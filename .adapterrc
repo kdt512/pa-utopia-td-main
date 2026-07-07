@@ -1,0 +1,20 @@
+{
+  "buildPlatform": "web-mobile",
+  "orientation": "auto",
+  "exportChannels": [
+    "Mintegral",
+    "AppLovin",
+    "Facebook",
+    "Unity",
+    "Google"
+  ],
+  "injectOptions": {
+    "AppLovin": {
+      "head": "<script>function mraidOpenPlayStore(){mraid.open('https://play.google.com/store/apps/details?id=com.legendarylabs.utopia&pcampaignid=web_share');}function mraidOpenAppStore(id){mraid.open('https://apps.apple.com/us/app/utopia-idle-tower-defense/id6758493769');}</script>"
+    },
+    "Unity": {
+      "body": "<script>function mraidOpenPlayStore(){mraid.open('https://play.google.com/store/apps/details?id=com.legendarylabs.utopia&pcampaignid=web_share');}function mraidOpenAppStore(id){mraid.open('https://apps.apple.com/us/app/utopia-idle-tower-defense/id6758493769');}</script>",
+      "sdkScript": "<script src=\"./mraid.js\"></script>"
+    }
+  }
+}

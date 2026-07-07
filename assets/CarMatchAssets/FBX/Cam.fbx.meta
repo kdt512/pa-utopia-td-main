@@ -1,0 +1,236 @@
+{
+  "ver": "2.3.14",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "f8b70962-2781-4b33-a3d5-1788f09b2aaf",
+  "files": [],
+  "subMetas": {
+    "67273": {
+      "importer": "gltf-mesh",
+      "uuid": "f8b70962-2781-4b33-a3d5-1788f09b2aaf@67273",
+      "displayName": "",
+      "id": "67273",
+      "name": "Cam.004.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 1314
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "200b3": {
+      "importer": "gltf-mesh",
+      "uuid": "f8b70962-2781-4b33-a3d5-1788f09b2aaf@200b3",
+      "displayName": "",
+      "id": "200b3",
+      "name": "CamBanh.001.mesh",
+      "userData": {
+        "gltfIndex": 1,
+        "triangleCount": 640
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "7d6ab": {
+      "importer": "texture",
+      "uuid": "f8b70962-2781-4b33-a3d5-1788f09b2aaf@7d6ab",
+      "displayName": "",
+      "id": "7d6ab",
+      "name": "base_color_texture.texture",
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0,
+        "isUuid": false,
+        "imageUuidOrDatabaseUri": "db://assets/CarMatchAssets/Textures/Cam.jpg"
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "a2390": {
+      "importer": "gltf-material",
+      "uuid": "f8b70962-2781-4b33-a3d5-1788f09b2aaf@a2390",
+      "displayName": "",
+      "id": "a2390",
+      "name": "Cam.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "9fdd1": {
+      "importer": "gltf-scene",
+      "uuid": "f8b70962-2781-4b33-a3d5-1788f09b2aaf@9fdd1",
+      "displayName": "",
+      "id": "9fdd1",
+      "name": "Cam.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [
+      {
+        "name": "base_color_texture",
+        "uri": "db://assets/CarMatchAssets/Textures/Cam.jpg"
+      }
+    ],
+    "fbx": {
+      "smartMaterialEnabled": true
+    },
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "f8b70962-2781-4b33-a3d5-1788f09b2aaf@67273",
+        "f8b70962-2781-4b33-a3d5-1788f09b2aaf@200b3"
+      ],
+      "skeletons": [],
+      "textures": [
+        "f8b70962-2781-4b33-a3d5-1788f09b2aaf@7d6ab"
+      ],
+      "materials": [
+        "f8b70962-2781-4b33-a3d5-1788f09b2aaf@a2390"
+      ],
+      "scenes": [
+        "f8b70962-2781-4b33-a3d5-1788f09b2aaf@9fdd1"
+      ]
+    },
+    "materials": {
+      "f8b70962-2781-4b33-a3d5-1788f09b2aaf@a2390": {
+        "__type__": "cc.Material",
+        "_name": "",
+        "_objFlags": 0,
+        "__editorExtras__": {},
+        "_native": "",
+        "_effectAsset": {
+          "__uuid__": "f648964e-8d32-41fc-9ac9-7a1e714dd17b",
+          "__expectedType__": "cc.EffectAsset"
+        },
+        "_techIdx": 0,
+        "_defines": [
+          {
+            "DCC_APP_NAME": 2,
+            "USE_ALBEDO_MAP": true,
+            "HAS_EXPORTED_METALLIC": true
+          },
+          {},
+          {},
+          {}
+        ],
+        "_states": [
+          {
+            "rasterizerState": {},
+            "depthStencilState": {},
+            "blendState": {
+              "targets": [
+                {}
+              ]
+            }
+          },
+          {
+            "rasterizerState": {},
+            "depthStencilState": {},
+            "blendState": {
+              "targets": [
+                {}
+              ]
+            }
+          },
+          {
+            "rasterizerState": {},
+            "depthStencilState": {},
+            "blendState": {
+              "targets": [
+                {}
+              ]
+            }
+          },
+          {
+            "rasterizerState": {},
+            "depthStencilState": {},
+            "blendState": {
+              "targets": [
+                {}
+              ]
+            }
+          }
+        ],
+        "_props": [
+          {
+            "mainTexture": {
+              "__uuid__": "c9fa56be-c8a2-46fc-93a4-8814dc6bdf2e@6c48a",
+              "__expectedType__": "cc.Texture2D"
+            },
+            "mainColor": {
+              "__type__": "cc.Color",
+              "r": 0,
+              "g": 24,
+              "b": 231,
+              "a": 255
+            },
+            "emissive": {
+              "__type__": "cc.Color",
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            },
+            "emissiveScale": 0,
+            "shininessExponent": 25,
+            "specularFactor": 0.25,
+            "transparencyFactor": 0
+          },
+          {},
+          {},
+          {}
+        ]
+      }
+    }
+  }
+}

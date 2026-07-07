@@ -1,0 +1,56 @@
+[
+    {
+        "level": 1,
+        "name": "Damage",
+        "value": 10,
+        "cost": 10,
+        "type": 1,
+        "costPerLevel": 10,
+        "valuePerLevel": 10
+    },
+    {
+        "level": 1,
+        "name": "Attack Speed",
+        "value": 1,
+        "cost": 5,
+        "type": 4,
+        "costPerLevel": 5,
+        "valuePerLevel": 0.015
+    },
+    {
+        "level": 1,
+        "name": "Critical Chance",
+        "value": 1,
+        "cost": 10,
+        "type": 5,
+        "costPerLevel": 10,
+        "valuePerLevel": 0.5
+    },
+    {
+        "level": 1,
+        "name": "Critical Factor",
+        "value": 1.2,
+        "cost": 10,
+        "type": 6,
+        "costPerLevel": 10,
+        "valuePerLevel": 1.2
+    },
+    {
+        "level": 1,
+        "name": "Health",
+        "value": 5,
+        "cost": 10,
+        "type": 0,
+        "costPerLevel": 10,
+        "valuePerLevel": 5
+    },
+    {
+        "level": 1,
+        "name": "Regen",
+        "value": 0,
+        "cost": 5,
+        "type": 7,
+        "costPerLevel": 5,
+        "valuePerLevel": 0.01
+    }
+]

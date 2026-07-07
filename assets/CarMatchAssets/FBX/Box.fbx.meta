@@ -1,0 +1,202 @@
+{
+  "ver": "2.3.14",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "22d9bfc5-353d-46fc-8390-957cc71cac53",
+  "files": [],
+  "subMetas": {
+    "a8010": {
+      "importer": "gltf-mesh",
+      "uuid": "22d9bfc5-353d-46fc-8390-957cc71cac53@a8010",
+      "displayName": "",
+      "id": "a8010",
+      "name": "Box.001.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 250
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "7d6ab": {
+      "importer": "texture",
+      "uuid": "22d9bfc5-353d-46fc-8390-957cc71cac53@7d6ab",
+      "displayName": "",
+      "id": "7d6ab",
+      "name": "base_color_texture.texture",
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0,
+        "isUuid": false,
+        "imageUuidOrDatabaseUri": "db://assets/CarMatchAssets/Textures/CarBox_BaseColor.jpg"
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "70de9": {
+      "importer": "gltf-material",
+      "uuid": "22d9bfc5-353d-46fc-8390-957cc71cac53@70de9",
+      "displayName": "",
+      "id": "70de9",
+      "name": "CarBox.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "d9508": {
+      "importer": "gltf-scene",
+      "uuid": "22d9bfc5-353d-46fc-8390-957cc71cac53@d9508",
+      "displayName": "",
+      "id": "d9508",
+      "name": "Box.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [
+      {
+        "name": "base_color_texture",
+        "uri": "db://assets/CarMatchAssets/Textures/CarBox_BaseColor.jpg"
+      }
+    ],
+    "fbx": {
+      "smartMaterialEnabled": true
+    },
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "22d9bfc5-353d-46fc-8390-957cc71cac53@a8010"
+      ],
+      "skeletons": [],
+      "textures": [
+        "22d9bfc5-353d-46fc-8390-957cc71cac53@7d6ab"
+      ],
+      "materials": [
+        "22d9bfc5-353d-46fc-8390-957cc71cac53@70de9"
+      ],
+      "scenes": [
+        "22d9bfc5-353d-46fc-8390-957cc71cac53@d9508"
+      ]
+    },
+    "materials": {
+      "22d9bfc5-353d-46fc-8390-957cc71cac53@70de9": {
+        "__type__": "cc.Material",
+        "_name": "",
+        "_objFlags": 0,
+        "__editorExtras__": {},
+        "_native": "",
+        "_effectAsset": {
+          "__uuid__": "f648964e-8d32-41fc-9ac9-7a1e714dd17b",
+          "__expectedType__": "cc.EffectAsset"
+        },
+        "_techIdx": 0,
+        "_defines": [
+          {
+            "DCC_APP_NAME": 2,
+            "USE_ALBEDO_MAP": true,
+            "HAS_EXPORTED_METALLIC": true
+          },
+          {},
+          {},
+          {}
+        ],
+        "_states": [
+          {
+            "rasterizerState": {},
+            "depthStencilState": {},
+            "blendState": {
+              "targets": [
+                {}
+              ]
+            }
+          },
+          {
+            "rasterizerState": {},
+            "depthStencilState": {},
+            "blendState": {
+              "targets": [
+                {}
+              ]
+            }
+          },
+          {
+            "rasterizerState": {},
+            "depthStencilState": {},
+            "blendState": {
+              "targets": [
+                {}
+              ]
+            }
+          },
+          {
+            "rasterizerState": {},
+            "depthStencilState": {},
+            "blendState": {
+              "targets": [
+                {}
+              ]
+            }
+          }
+        ],
+        "_props": [
+          {
+            "mainTexture": {
+              "__uuid__": "3b0a1cbe-8152-46cc-9edb-5ad0a04548fc@6c48a",
+              "__expectedType__": "cc.Texture2D"
+            },
+            "shininessExponent": 19.99999952104794,
+            "specularFactor": 0.25,
+            "transparencyFactor": 0
+          },
+          {},
+          {},
+          {}
+        ]
+      }
+    }
+  }
+}

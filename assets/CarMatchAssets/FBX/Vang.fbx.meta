@@ -1,0 +1,228 @@
+{
+  "ver": "2.3.14",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "98190bf3-36c4-4ec6-83b8-2d00f9c19a2b",
+  "files": [],
+  "subMetas": {
+    "374db": {
+      "importer": "gltf-mesh",
+      "uuid": "98190bf3-36c4-4ec6-83b8-2d00f9c19a2b@374db",
+      "displayName": "",
+      "id": "374db",
+      "name": "Vang.003.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 1298
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "96cd4": {
+      "importer": "gltf-mesh",
+      "uuid": "98190bf3-36c4-4ec6-83b8-2d00f9c19a2b@96cd4",
+      "displayName": "",
+      "id": "96cd4",
+      "name": "Vang.001.mesh",
+      "userData": {
+        "gltfIndex": 1,
+        "triangleCount": 640
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "7d6ab": {
+      "importer": "texture",
+      "uuid": "98190bf3-36c4-4ec6-83b8-2d00f9c19a2b@7d6ab",
+      "displayName": "",
+      "id": "7d6ab",
+      "name": "base_color_texture.texture",
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0,
+        "isUuid": false,
+        "imageUuidOrDatabaseUri": "db://assets/CarMatchAssets/Textures/Vang.jpg"
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "7ee49": {
+      "importer": "gltf-material",
+      "uuid": "98190bf3-36c4-4ec6-83b8-2d00f9c19a2b@7ee49",
+      "displayName": "",
+      "id": "7ee49",
+      "name": "Vang.001.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "39c2c": {
+      "importer": "gltf-scene",
+      "uuid": "98190bf3-36c4-4ec6-83b8-2d00f9c19a2b@39c2c",
+      "displayName": "",
+      "id": "39c2c",
+      "name": "Vang.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [
+      {
+        "name": "base_color_texture",
+        "uri": "db://assets/CarMatchAssets/Textures/Vang.jpg"
+      }
+    ],
+    "fbx": {
+      "smartMaterialEnabled": true
+    },
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "98190bf3-36c4-4ec6-83b8-2d00f9c19a2b@374db",
+        "98190bf3-36c4-4ec6-83b8-2d00f9c19a2b@96cd4"
+      ],
+      "skeletons": [],
+      "textures": [
+        "98190bf3-36c4-4ec6-83b8-2d00f9c19a2b@7d6ab"
+      ],
+      "materials": [
+        "98190bf3-36c4-4ec6-83b8-2d00f9c19a2b@7ee49"
+      ],
+      "scenes": [
+        "98190bf3-36c4-4ec6-83b8-2d00f9c19a2b@39c2c"
+      ]
+    },
+    "materials": {
+      "98190bf3-36c4-4ec6-83b8-2d00f9c19a2b@7ee49": {
+        "__type__": "cc.Material",
+        "_name": "",
+        "_objFlags": 0,
+        "__editorExtras__": {},
+        "_native": "",
+        "_effectAsset": {
+          "__uuid__": "f648964e-8d32-41fc-9ac9-7a1e714dd17b",
+          "__expectedType__": "cc.EffectAsset"
+        },
+        "_techIdx": 0,
+        "_defines": [
+          {
+            "DCC_APP_NAME": 2,
+            "USE_ALBEDO_MAP": true,
+            "HAS_EXPORTED_METALLIC": true
+          },
+          {},
+          {},
+          {}
+        ],
+        "_states": [
+          {
+            "rasterizerState": {},
+            "depthStencilState": {},
+            "blendState": {
+              "targets": [
+                {}
+              ]
+            }
+          },
+          {
+            "rasterizerState": {},
+            "depthStencilState": {},
+            "blendState": {
+              "targets": [
+                {}
+              ]
+            }
+          },
+          {
+            "rasterizerState": {},
+            "depthStencilState": {},
+            "blendState": {
+              "targets": [
+                {}
+              ]
+            }
+          },
+          {
+            "rasterizerState": {},
+            "depthStencilState": {},
+            "blendState": {
+              "targets": [
+                {}
+              ]
+            }
+          }
+        ],
+        "_props": [
+          {
+            "mainTexture": {
+              "__uuid__": "0359b5c6-6232-4192-b43f-bd094a41ce9f@6c48a",
+              "__expectedType__": "cc.Texture2D"
+            },
+            "mainColor": {
+              "__type__": "cc.Color",
+              "r": 255,
+              "g": 201,
+              "b": 0,
+              "a": 255
+            },
+            "shininessExponent": 19.99999952104794,
+            "specularFactor": 0.25,
+            "transparencyFactor": 0
+          },
+          {},
+          {},
+          {}
+        ]
+      }
+    }
+  }
+}

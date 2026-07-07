@@ -1,0 +1,227 @@
+{
+  "ver": "2.3.14",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "d334fabd-2486-4b53-a3de-8cb9e3bf0631",
+  "files": [],
+  "subMetas": {
+    "88288": {
+      "importer": "gltf-mesh",
+      "uuid": "d334fabd-2486-4b53-a3de-8cb9e3bf0631@88288",
+      "displayName": "",
+      "id": "88288",
+      "name": "LamNgoc.004.mesh",
+      "userData": {
+        "gltfIndex": 1,
+        "triangleCount": 640
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "bed94": {
+      "importer": "gltf-mesh",
+      "uuid": "d334fabd-2486-4b53-a3de-8cb9e3bf0631@bed94",
+      "displayName": "",
+      "id": "bed94",
+      "name": "LamNgoc.003.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 948
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "7d6ab": {
+      "importer": "texture",
+      "uuid": "d334fabd-2486-4b53-a3de-8cb9e3bf0631@7d6ab",
+      "displayName": "",
+      "id": "7d6ab",
+      "name": "base_color_texture.texture",
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0,
+        "isUuid": false,
+        "imageUuidOrDatabaseUri": "db://assets/CarMatchAssets/Textures/LamNgoc.jpg"
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "13cc6": {
+      "importer": "gltf-material",
+      "uuid": "d334fabd-2486-4b53-a3de-8cb9e3bf0631@13cc6",
+      "displayName": "",
+      "id": "13cc6",
+      "name": "LamNgoc.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "34f3d": {
+      "importer": "gltf-scene",
+      "uuid": "d334fabd-2486-4b53-a3de-8cb9e3bf0631@34f3d",
+      "displayName": "",
+      "id": "34f3d",
+      "name": "LamNgoc.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [
+      {
+        "name": "base_color_texture",
+        "uri": "db://assets/CarMatchAssets/Textures/LamNgoc.jpg"
+      }
+    ],
+    "fbx": {
+      "smartMaterialEnabled": true
+    },
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "d334fabd-2486-4b53-a3de-8cb9e3bf0631@bed94",
+        "d334fabd-2486-4b53-a3de-8cb9e3bf0631@88288"
+      ],
+      "skeletons": [],
+      "textures": [
+        "d334fabd-2486-4b53-a3de-8cb9e3bf0631@7d6ab"
+      ],
+      "materials": [
+        "d334fabd-2486-4b53-a3de-8cb9e3bf0631@13cc6"
+      ],
+      "scenes": [
+        "d334fabd-2486-4b53-a3de-8cb9e3bf0631@34f3d"
+      ]
+    },
+    "materials": {
+      "d334fabd-2486-4b53-a3de-8cb9e3bf0631@13cc6": {
+        "__type__": "cc.Material",
+        "_name": "",
+        "_objFlags": 0,
+        "__editorExtras__": {},
+        "_native": "",
+        "_effectAsset": {
+          "__uuid__": "f648964e-8d32-41fc-9ac9-7a1e714dd17b",
+          "__expectedType__": "cc.EffectAsset"
+        },
+        "_techIdx": 0,
+        "_defines": [
+          {
+            "DCC_APP_NAME": 2,
+            "USE_ALBEDO_MAP": true
+          },
+          {},
+          {},
+          {}
+        ],
+        "_states": [
+          {
+            "rasterizerState": {},
+            "depthStencilState": {},
+            "blendState": {
+              "targets": [
+                {}
+              ]
+            }
+          },
+          {
+            "rasterizerState": {},
+            "depthStencilState": {},
+            "blendState": {
+              "targets": [
+                {}
+              ]
+            }
+          },
+          {
+            "rasterizerState": {},
+            "depthStencilState": {},
+            "blendState": {
+              "targets": [
+                {}
+              ]
+            }
+          },
+          {
+            "rasterizerState": {},
+            "depthStencilState": {},
+            "blendState": {
+              "targets": [
+                {}
+              ]
+            }
+          }
+        ],
+        "_props": [
+          {
+            "mainTexture": {
+              "__uuid__": "ea853705-9013-4cdc-9edf-cb64cfa5206c@6c48a",
+              "__expectedType__": "cc.Texture2D"
+            },
+            "mainColor": {
+              "__type__": "cc.Color",
+              "r": 12,
+              "g": 255,
+              "b": 184,
+              "a": 255
+            },
+            "shininessExponent": 19.99999952104794,
+            "specularFactor": 0.25,
+            "transparencyFactor": 0
+          },
+          {},
+          {},
+          {}
+        ]
+      }
+    }
+  }
+}
