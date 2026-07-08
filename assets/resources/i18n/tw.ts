@@ -2,8 +2,8 @@ const win = window as any;
 
 export const languages = {
   // Data
-  attack_upgrade: "攻擊升級",
-  tap_to_upgrade: "點擊升級！",
+  attack_upgrade: "攻擊強化",
+  tap_to_upgrade: "點擊升級!",
   upgrade: "升級",
   stats_type_0: "生命值",
   stats_type_1: "傷害",

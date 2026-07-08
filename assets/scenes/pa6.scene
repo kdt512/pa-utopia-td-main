@@ -810,7 +810,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 540,
-      "y": 960,
+      "y": 960.0000000000001,
       "z": -2
     },
     "_lrot": {
@@ -895,7 +895,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 960,
+    "_orthoHeight": 960.0000000000001,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -9458,7 +9458,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 900,
+      "width": 400,
       "height": 126
     },
     "_anchorPoint": {
@@ -9488,7 +9488,7 @@
       "b": 255,
       "a": 255
     },
-    "_string": "攻撃アップグレード",
+    "_string": "攻撃強化",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 100,
@@ -10788,7 +10788,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 560,
+      "width": 160,
       "height": 100.8
     },
     "_anchorPoint": {
@@ -10818,7 +10818,7 @@
       "b": 255,
       "a": 255
     },
-    "_string": "アップグレード",
+    "_string": "強化",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 80,
@@ -11064,7 +11064,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 780,
+      "width": 282.5999755859375,
       "height": 75.6
     },
     "_anchorPoint": {
@@ -11094,11 +11094,11 @@
       "b": 255,
       "a": 255
     },
-    "_string": "タップしてアップグレード！",
+    "_string": "タップで強化!",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 60,
-    "_fontSize": 60,
+    "_actualFontSize": 45,
+    "_fontSize": 45,
     "_fontFamily": "Arial",
     "_lineHeight": 60,
     "_overflow": 0,
@@ -15064,7 +15064,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 1080,
-      "height": 1920
+      "height": 1920.0000000000002
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",

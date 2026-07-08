@@ -2,9 +2,9 @@ const win = window as any;
 
 export const languages = {
   // Data
-  attack_upgrade: "攻撃アップグレード",
-  tap_to_upgrade: "タップしてアップグレード！",
-  upgrade: "アップグレード",
+  attack_upgrade: "攻撃強化",
+  tap_to_upgrade: "タップで強化!",
+  upgrade: "強化",
   stats_type_0: "体力",
   stats_type_1: "ダメージ",
   stats_type_2: "スピード",
