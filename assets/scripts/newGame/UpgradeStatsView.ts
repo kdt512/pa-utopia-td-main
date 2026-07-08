@@ -11,7 +11,7 @@ import { UIButton } from "../eventSystem/UIButton";
 import { IStats, StatsType } from "./CharacterDataInterface";
 import { PlayerStats } from "./PlayerStats";
 import { Currency } from "./Currency";
-import i18n from './../../resources/i18n/LanguageData';
+import * as i18n from './../../resources/i18n/LanguageData';
 
 const { ccclass, property } = _decorator;
 
@@ -34,6 +34,7 @@ export class UpgradeStatsView extends Component {
     this.level.string = `Lv.${statData.level}`;
     const id = statData.id;
     const statsName = i18n.t(`stats_type_${id}`);
+    console.log(`id: ${id}, statsName: ${statsName}`);
     this.statName.string = statsName;
     this.statValue.string = this.formatStatValue(statData.value, statData.type);
     this.cost.string = `$${statData.cost}`;

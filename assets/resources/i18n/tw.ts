@@ -5,6 +5,14 @@ export const languages = {
   attack_upgrade: "攻擊升級",
   tap_to_upgrade: "點擊升級！",
   upgrade: "升級",
+  stats_type_0: "生命值",
+  stats_type_1: "傷害",
+  stats_type_2: "速度",
+  stats_type_3: "攻擊範圍",
+  stats_type_4: "攻擊速度",
+  stats_type_5: "暴擊率",
+  stats_type_6: "暴擊係數",
+  stats_type_7: "再生",
 };
 
 if (!win.languages) {
