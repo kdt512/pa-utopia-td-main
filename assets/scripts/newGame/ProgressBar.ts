@@ -52,7 +52,7 @@ export class ProgressBar extends Component {
 
   updateStat(type: number) {
     if (type === 1) {
-      this.updateWidth(this.playerStats.getStats(StatsType.DAMAGE).level * 10);
+      this.updateWidth(this.playerStats.getStats(StatsType.DAMAGE).level * 12);
     }
   }
 

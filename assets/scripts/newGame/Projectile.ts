@@ -44,8 +44,6 @@ export class Projectile extends Component {
       this.visualRenderer = this.getComponentInChildren(MeshRenderer);
     }
     this.visualRenderer?.material?.setProperty("mainColor", color);
-    console.log("Projectile color set to:", color.toString());
-    console.log(this.visualRenderer?.material);
   }
 
   update(dt: number) {
@@ -85,8 +83,6 @@ export class Projectile extends Component {
     // Kiểm tra va chạm với Enemy
     const enemy = otherNode.getComponent(Enemy);
     if (enemy) {
-      console.log("Hit enemy:", otherNode.name);
-      // TODO: Gây sát thương cho enemy
       enemy.takeDamage(this.damage);
       // Hủy projectile
       this.node.destroy();

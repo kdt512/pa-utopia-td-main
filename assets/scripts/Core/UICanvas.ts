@@ -1,6 +1,7 @@
 import { _decorator, Canvas, Component, Label, Node } from "cc";
 
 import { Game, GameState } from "./Game";
+import * as i18n from './../../resources/i18n/LanguageData';
 import { UIButton } from "../eventSystem/UIButton";
 import { PlayerStats } from "../newGame/PlayerStats";
 import { StatsType } from "../newGame/CharacterDataInterface";
@@ -24,7 +25,7 @@ export class UICanvas extends Component {
 
   private oneTime: boolean = false;
 
-  onLoad(): void {}
+  onLoad(): void { }
 
   public init(game: Game): void {
     // this.node.active = true;
@@ -44,7 +45,7 @@ export class UICanvas extends Component {
       this.oneTime = true;
       Game.instance.CurrentGameState = GameState.GamePlay;
     }
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 4; i++) {
       this.playerStats.upgradeStats(StatsType.DAMAGE);
       this.playerStats.upgradeStats(StatsType.ATTACK_SPEED);
     }
@@ -58,14 +59,14 @@ export class UICanvas extends Component {
       this.oneTime = true;
       Game.instance.CurrentGameState = GameState.GamePlay;
     }
-
+    console.log("Current DAMAGE level:", this.playerStats.getStats(StatsType.DAMAGE).level);
     if (this.playerStats.getStats(StatsType.DAMAGE).level < 20) {
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 4; i++) {
         this.playerStats.upgradeStats(StatsType.DAMAGE);
         this.playerStats.upgradeStats(StatsType.ATTACK_SPEED);
       }
-      if (this.playerStats.getStats(StatsType.DAMAGE).level >= 25) {
-        this.lblTut.string = "Upgrade to unlock max power!";
+      if (this.playerStats.getStats(StatsType.DAMAGE).level >= 20) {
+        this.lblTut.string = i18n.t('upgrade_max');
       }
     } else {
       Game.instance.GameCallCTA();

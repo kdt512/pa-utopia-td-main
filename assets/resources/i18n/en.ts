@@ -13,6 +13,7 @@ export const languages = {
   stats_type_5: "Critical Chance",
   stats_type_6: "Critical Factor",
   stats_type_7: "Regen",
+  upgrade_max: "Upgrade to unlock max power!",
 };
 
 if (!win.languages) {

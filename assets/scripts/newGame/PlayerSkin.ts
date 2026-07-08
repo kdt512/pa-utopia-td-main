@@ -55,7 +55,6 @@ export class PlayerSkin extends Component {
     if (type !== StatsType.DAMAGE) return;
 
     const level = this.playerStats.getStats(StatsType.DAMAGE)?.level ?? 1;
-    console.log(`PlayerSkin: DAMAGE level upgraded to ${level}`);
     this.applySkinForLevel(level);
   }
 

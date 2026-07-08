@@ -13,6 +13,7 @@ export const languages = {
   stats_type_5: "クリティカルチャンス",
   stats_type_6: "クリティカルファクター",
   stats_type_7: "再生",
+  upgrade_max: "アップグレードして最大パワーを解放！",
 };
 
 if (!win.languages) {
