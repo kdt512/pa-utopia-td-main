@@ -14,6 +14,7 @@ export enum CharacterType {
 
 export interface IStats {
   level: number;
+  id: number;
   name: string;
   value: number;
   valuePerLevel: number;

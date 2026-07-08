@@ -5,11 +5,14 @@ export const languages = {
   attack_upgrade: "Attack Upgrade",
   tap_to_upgrade: "Tap to upgrade!",
   upgrade: "Upgrade",
-  stats_type_0: "Damage",
-  stats_type_1: "Attack Range",
-  stats_type_2: "Attack Speed",
-  stats_type_3: "Health",
-  stats_type_4: "Speed",
+  stats_type_0: "Health",
+  stats_type_1: "Damage",
+  stats_type_2: "Speed",
+  stats_type_3: "Attack Range",
+  stats_type_4: "Attack Speed",
+  stats_type_5: "Critical Chance",
+  stats_type_6: "Critical Factor",
+  stats_type_7: "Regen",
 };
 
 if (!win.languages) {

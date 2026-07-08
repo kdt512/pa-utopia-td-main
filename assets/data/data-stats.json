@@ -1,6 +1,7 @@
 [
     {
         "level": 1,
+        "id": 1,
         "name": "Damage",
         "value": 10,
         "cost": 10,
@@ -10,6 +11,7 @@
     },
     {
         "level": 1,
+        "id": 4,
         "name": "Attack Speed",
         "value": 1,
         "cost": 5,
@@ -19,6 +21,7 @@
     },
     {
         "level": 1,
+        "id": 5,
         "name": "Critical Chance",
         "value": 1,
         "cost": 10,
@@ -28,6 +31,7 @@
     },
     {
         "level": 1,
+        "id": 6,
         "name": "Critical Factor",
         "value": 1.2,
         "cost": 10,
@@ -37,6 +41,7 @@
     },
     {
         "level": 1,
+        "id": 0,
         "name": "Health",
         "value": 5,
         "cost": 10,
@@ -46,6 +51,7 @@
     },
     {
         "level": 1,
+        "id": 7,
         "name": "Regen",
         "value": 0,
         "cost": 5,
