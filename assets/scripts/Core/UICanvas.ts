@@ -24,6 +24,8 @@ export class UICanvas extends Component {
 
   private oneTime: boolean = false;
 
+  onLoad(): void {}
+
   public init(game: Game): void {
     // this.node.active = true;
     // game.onChangeState.on(this.onChangeState, this);
