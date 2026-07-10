@@ -4,7 +4,7 @@ import { UICanvas } from "./UICanvas";
 import { Signal } from "../eventSystem/Signal";
 import { AudioPlayer } from "./AudioPlayer";
 import { GameAudioAdapter } from "./GameAudioAdapter";
-import * as i18n from './../../resources/i18n/LanguageData';
+import * as i18n from "./../../resources/i18n/LanguageData";
 const { ccclass, property } = _decorator;
 
 export enum GameState {
@@ -36,9 +36,9 @@ export class Game extends Component {
   public static instance: Game = null;
 
   protected onLoad(): void {
+    i18n.init("tw");
     this.gameFlow = new GameFlow(this.audioPlayer, this.setup);
     Game.instance = this;
-
   }
 
   protected start(): void {
