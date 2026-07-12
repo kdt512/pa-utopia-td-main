@@ -1486,6 +1486,7 @@
     "firePoint": {
       "__id__": 35
     },
+    "playerSkin": null,
     "_id": "15WCY0lLpB5I4jMTTr1TWY"
   },
   {
@@ -12292,9 +12293,7 @@
     "enemySpawner": {
       "__id__": 181
     },
-    "label": {
-      "__id__": 323
-    },
+    "playerStats": null,
     "_id": "37jUU2aW9Ob5paviGIkoQ9"
   },
   {
@@ -14380,6 +14379,7 @@
     "winPanel": null,
     "losePanel": null,
     "uiBottom": null,
+    "lblTut": null,
     "btnWin": null,
     "btnLose": null,
     "btnDownload": null,
