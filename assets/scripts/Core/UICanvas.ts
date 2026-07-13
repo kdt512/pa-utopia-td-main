@@ -29,6 +29,8 @@ export class UICanvas extends Component {
   @property(Label) private atkLbl: Label = null;
   @property(Label) private defLbl: Label = null;
   @property(Node) private player: Node = null;
+  @property(Node) private fireCircle: Node = null;
+  @property(Node) private yellowCircle: Node = null;
 
   private oneTime: boolean = false;
 
@@ -91,6 +93,8 @@ export class UICanvas extends Component {
     }
   }
 
+  defLevel: number = 0;
+
   upgradeDefPa3() {
     this.tutNode.active = false;
     if (!this.oneTime) {
@@ -98,11 +102,15 @@ export class UICanvas extends Component {
       Game.instance.CurrentGameState = GameState.GamePlay;
     }
 
-    if (
-      Currency.instance.getCurrency() > 10 &&
-      this.playerStats.getStats(StatsType.HEALTH).level < 10
-    ) {
-      this.playerStats.upgradeStats(StatsType.HEALTH);
+    if (Currency.instance.getCurrency() > 10 && this.defLevel < 10) {
+      this.defLevel++;
+      if (this.defLevel == 1)
+        FxManager.instance.showFire(Player.Instance.node.worldPosition);
+      else if (this.defLevel == 3) FxManager.instance.showSubPlayer();
+      else if (this.defLevel == 6)
+        FxManager.instance.showThunderBold(Player.Instance.node.worldPosition);
+      else this.playerStats.upgradeStats(StatsType.HEALTH);
+
       Currency.instance.useCurrency(10);
       if (this.defLbl)
         this.defLbl.string = this.playerStats

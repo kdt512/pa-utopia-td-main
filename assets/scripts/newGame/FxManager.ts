@@ -1,53 +1,90 @@
-import { _decorator, Component, instantiate, Node, Prefab, Vec3, Camera } from 'cc';
-import { Sparkle } from './Sparkle';
+import {
+  _decorator,
+  Component,
+  instantiate,
+  Node,
+  Prefab,
+  Vec3,
+  Camera,
+} from "cc";
+import { Sparkle } from "./Sparkle";
 const { ccclass, property } = _decorator;
 
-@ccclass('FxManager')
+@ccclass("FxManager")
 export class FxManager extends Component {
-    @property(Prefab) private fxCompPrefab: Prefab = null;
-    @property(Camera) private mainCamera: Camera = null;
-    @property(Prefab) private sparklePrefab: Prefab = null;
-    @property(Prefab) private upgradePrefab: Prefab = null;
-    @property(Node) private sparkleParent: Node = null;
+  @property(Prefab) private fxCompPrefab: Prefab = null;
+  @property(Camera) private mainCamera: Camera = null;
+  @property(Prefab) private sparklePrefab: Prefab = null;
+  @property(Prefab) private upgradePrefab: Prefab = null;
+  @property(Node) private sparkleParent: Node = null;
 
-    public static instance: FxManager = null;
+  @property(Node) private fireCircle: Node = null;
+  @property(Node) private thunderCircle: Node = null;
+  @property(Node) private subPlayer: Node = null;
 
-    protected start(): void {
-        FxManager.instance = this;
+  public static instance: FxManager = null;
+
+  protected start(): void {
+    FxManager.instance = this;
+  }
+
+  public createFx(position: Vec3): void {
+    if (!this.mainCamera) {
+      console.error("Main Camera is not assigned in FxManager");
+      return;
     }
 
-    public createFx(position: Vec3): void {
-        if (!this.mainCamera) {
-            console.error("Main Camera is not assigned in FxManager");
-            return;
-        }
+    const fxComp = instantiate(this.fxCompPrefab);
+    this.node.addChild(fxComp);
 
-        const fxComp = instantiate(this.fxCompPrefab);
-        this.node.addChild(fxComp);
+    const uiPos = new Vec3();
+    this.mainCamera.convertToUINode(position, this.node, uiPos);
+    fxComp.setPosition(uiPos);
 
-        const uiPos = new Vec3();
-        this.mainCamera.convertToUINode(position, this.node, uiPos);
-        fxComp.setPosition(uiPos);
+    const sparkle = instantiate(this.sparklePrefab);
+    sparkle.parent = this.sparkleParent;
+    sparkle.setPosition(position);
+    sparkle.getComponent(Sparkle).play();
+  }
 
-        const sparkle = instantiate(this.sparklePrefab);
-        sparkle.parent = this.sparkleParent;
-        sparkle.setPosition(position);
-        sparkle.getComponent(Sparkle).play();
-        
+  public creatFxUpgrade(position: Vec3): void {
+    if (!this.mainCamera) {
+      console.error("Main Camera is not assigned in FxManager");
+      return;
+    }
+    const fx = instantiate(this.upgradePrefab);
+    this.node.addChild(fx);
+
+    const uiPos = new Vec3();
+    this.mainCamera.convertToUINode(position, this.node, uiPos);
+    fx.setPosition(uiPos);
+  }
+
+  showFire(position: Vec3): void {
+    if (!this.mainCamera) {
+      console.error("Main Camera is not assigned in FxManager");
+      return;
     }
 
-    public creatFxUpgrade(position:Vec3): void {
-        if (!this.mainCamera) {
-            console.error("Main Camera is not assigned in FxManager");
-            return;
-        }
-        const fx = instantiate(this.upgradePrefab);
-        this.node.addChild(fx);
+    const uiPos = new Vec3();
+    this.mainCamera.convertToUINode(position, this.node, uiPos);
+    this.fireCircle.setPosition(uiPos);
+    this.fireCircle.active = true;
+  }
 
-        const uiPos = new Vec3();
-        this.mainCamera.convertToUINode(position, this.node, uiPos);
-        fx.setPosition(uiPos);
+  showThunderBold(position: Vec3): void {
+    if (!this.mainCamera) {
+      console.error("Main Camera is not assigned in FxManager");
+      return;
     }
+
+    const uiPos = new Vec3();
+    this.mainCamera.convertToUINode(position, this.node, uiPos);
+    this.thunderCircle.setPosition(uiPos);
+    this.thunderCircle.active = true;
+  }
+
+  showSubPlayer(){
+    this.subPlayer.active = true;
+  }
 }
-
-
