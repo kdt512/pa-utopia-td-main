@@ -31,4 +31,11 @@ export class PlayerStats extends Component {
 
     this.onUpgradeStats.trigger(type);
   }
+
+  public getValue(type: StatsType){
+    const stat = this.getStats(type);
+    if (stat) 
+      return stat.value;
+    return 0;
+  }
 }

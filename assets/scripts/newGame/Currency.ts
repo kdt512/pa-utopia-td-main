@@ -30,7 +30,7 @@ export class Currency extends Component {
     }
 
     public rewardKillEnemy(){
-        this.addCurrency(this.data?.json.reward ?? 10);
+        this.addCurrency(3);
     }
 
     private updateValueLabel(): void {

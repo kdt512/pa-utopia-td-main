@@ -250,6 +250,7 @@
     },
     "projectilePrefab": null,
     "firePoint": null,
+    "playerSkin": null,
     "_id": ""
   },
   {

@@ -9,7 +9,7 @@ export class PlayerSkin extends Component {
 
   // Level DAMAGE tối thiểu để mở từng tier skin, tương ứng theo index với skinTextures.
   @property([Number]) private levelThresholds: number[] = [
-    1, 5, 10, 15, 20, 25,
+    1, 2, 6, 10, 20, 25,
   ];
 
   // Kéo Layer 2.png .. Layer 7.png vào đây theo đúng thứ tự tier (thấp -> cao).
@@ -60,6 +60,7 @@ export class PlayerSkin extends Component {
 
   private applySkinForLevel(level: number): void {
     let tierIndex = 0;
+    console.log("applySkinForLevel; "+level)
     for (let i = 0; i < this.levelThresholds.length; i++) {
       if (level >= this.levelThresholds[i]) {
         tierIndex = i;
