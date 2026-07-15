@@ -13,6 +13,9 @@ export const languages = {
   stats_type_5: "暴擊率",
   stats_type_6: "暴擊係數",
   stats_type_7: "再生",
+  upgrade_max: "升級以解鎖最大威力!",
+  attack: "攻擊",
+  defense: "防禦",
 };
 
 if (!win.languages) {
