@@ -93,8 +93,7 @@ export class UICanvas extends Component {
     } else {
       Game.instance.GameCallCTA();
       this.dowloadPanel.active = true;
-      Game.instance.CurrentGameState = GameState.Win;
-
+      Game.instance.CurrentGameState = GameState.None;
     }
   }
 
@@ -111,9 +110,9 @@ export class UICanvas extends Component {
       this.defLevel++;
       if (this.defLevel == 1)
         FxManager.instance.showFire(Player.Instance.node.worldPosition);
-      else if (this.defLevel == 3) FxManager.instance.showSubPlayer();
-      else if (this.defLevel == 6)
+      else if (this.defLevel == 3)
         FxManager.instance.showThunderBold(Player.Instance.node.worldPosition);
+      else if (this.defLevel == 6) FxManager.instance.showSubPlayer();
       else this.playerStats.upgradeStats(StatsType.HEALTH);
 
       Currency.instance.useCurrency(10);
@@ -123,6 +122,8 @@ export class UICanvas extends Component {
           .toString();
     } else {
       Game.instance.GameCallCTA();
+      this.dowloadPanel.active = true;
+      Game.instance.CurrentGameState = GameState.None;
     }
   }
 
@@ -148,7 +149,7 @@ export class UICanvas extends Component {
       }
     } else {
       Game.instance.GameCallCTA();
-            this.dowloadPanel.active = true;
+      this.dowloadPanel.active = true;
       Game.instance.CurrentGameState = GameState.None;
     }
   }

@@ -28,19 +28,29 @@
       {
         "index": 4,
         "name": "Enemy"
+      },
+      {
+        "index": 5,
+        "name": "Circle"
       }
     ],
     "collisionMatrix": {
-      "0": 15,
+      "0": 47,
       "1": 1,
       "2": 1,
-      "3": 1
+      "3": 1,
+      "4": 32,
+      "5": 17
     }
   },
   "layer": [
     {
       "name": "Enemy",
       "value": 1
+    },
+    {
+      "name": "Circle",
+      "value": 2
     }
   ],
   "custom_joint_texture_layouts": []

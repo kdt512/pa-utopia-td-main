@@ -43,7 +43,7 @@
         "level": 1,
         "id": 0,
         "name": "Health",
-        "value": 20,
+        "value": 50,
         "cost": 10,
         "type": 0,
         "costPerLevel": 10,
