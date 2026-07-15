@@ -34,6 +34,8 @@ export class FxManager extends Component {
       return;
     }
 
+    console.log("create fx");
+
     const fxComp = instantiate(this.fxCompPrefab);
     this.node.addChild(fxComp);
 
