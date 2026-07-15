@@ -1281,7 +1281,7 @@
       "r": 255,
       "g": 255,
       "b": 255,
-      "a": 255
+      "a": 187
     },
     "_spriteFrame": {
       "__uuid__": "740fa388-2729-4548-af14-97d9b71eb1d2@f9941",
@@ -1315,12 +1315,12 @@
     "playOnLoad": true,
     "_clips": [
       {
-        "__uuid__": "d30f77af-221d-4268-94aa-e37d104687a1",
+        "__uuid__": "62442755-2387-4720-b327-1f799539f0e8",
         "__expectedType__": "cc.AnimationClip"
       }
     ],
     "_defaultClip": {
-      "__uuid__": "d30f77af-221d-4268-94aa-e37d104687a1",
+      "__uuid__": "62442755-2387-4720-b327-1f799539f0e8",
       "__expectedType__": "cc.AnimationClip"
     },
     "_id": "55V+WTietHPqYRjT2wT10A"
@@ -2716,7 +2716,7 @@
         "__id__": 159
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 163

@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.AnimationClip",
-    "_name": "rotate",
+    "_name": "rotate-clockwise",
     "_objFlags": 0,
     "__editorExtras__": {
       "embeddedPlayerGroups": []
@@ -67,7 +67,7 @@
     "__type__": "cc.RealCurve",
     "_times": [
       0,
-      0.3333333333333333
+      0.3333333432674408
     ],
     "_values": [
       {
@@ -112,7 +112,7 @@
     "__type__": "cc.RealCurve",
     "_times": [
       0,
-      0.3333333333333333
+      0.3333333432674408
     ],
     "_values": [
       {
@@ -157,7 +157,7 @@
     "__type__": "cc.RealCurve",
     "_times": [
       0,
-      0.3333333333333333
+      0.3333333432674408
     ],
     "_values": [
       {
@@ -178,7 +178,7 @@
         "__type__": "cc.RealKeyframeValue",
         "interpolationMode": 0,
         "tangentWeightMode": 0,
-        "value": -360,
+        "value": 360,
         "rightTangent": 0,
         "rightTangentWeight": 1,
         "leftTangent": 0,
