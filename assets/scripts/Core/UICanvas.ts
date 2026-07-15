@@ -16,6 +16,8 @@ export class UICanvas extends Component {
   @property(Node) private gameplayPanel: Node = null;
   @property(Node) private winPanel: Node = null;
   @property(Node) private losePanel: Node = null;
+  @property(Node) private dowloadPanel: Node = null;
+
   @property(Node) private uiBottom: Node = null;
   @property(Label) private lblTut: Label = null;
 
@@ -90,6 +92,9 @@ export class UICanvas extends Component {
       FxManager.instance.creatFxUpgrade(this.player.worldPosition);
     } else {
       Game.instance.GameCallCTA();
+      this.dowloadPanel.active = true;
+      Game.instance.CurrentGameState = GameState.Win;
+
     }
   }
 
@@ -143,6 +148,8 @@ export class UICanvas extends Component {
       }
     } else {
       Game.instance.GameCallCTA();
+            this.dowloadPanel.active = true;
+      Game.instance.CurrentGameState = GameState.None;
     }
   }
 

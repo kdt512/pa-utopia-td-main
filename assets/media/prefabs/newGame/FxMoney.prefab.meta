@@ -2,12 +2,12 @@
   "ver": "1.1.50",
   "importer": "prefab",
   "imported": true,
-  "uuid": "beac2ed7-adf9-4a82-8a20-7c23dd340e45",
+  "uuid": "b33897cb-3ebf-465d-a491-c33d38a6c536",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "FxComp"
+    "syncNodeName": "FxMoney"
   }
 }
