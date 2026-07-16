@@ -56,6 +56,9 @@ export class UICanvas extends Component {
       this.defLbl.string = this.playerStats
         .getValue(StatsType.HEALTH)
         .toString();
+    for (let i = 0; i < 4; i++) {
+      this.playerStats.upgradeStats(StatsType.ATTACK_SPEED);
+    }
   }
 
   private updateTut(): void {
@@ -94,7 +97,6 @@ export class UICanvas extends Component {
       Game.instance.GameCallCTA();
       this.dowloadPanel.active = true;
       Game.instance.CurrentGameState = GameState.Win;
-
     }
   }
 
@@ -148,7 +150,7 @@ export class UICanvas extends Component {
       }
     } else {
       Game.instance.GameCallCTA();
-            this.dowloadPanel.active = true;
+      this.dowloadPanel.active = true;
       Game.instance.CurrentGameState = GameState.None;
     }
   }

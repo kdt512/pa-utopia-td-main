@@ -16,6 +16,7 @@ export const languages = {
   upgrade_max: "アップグレードして最大パワーを解放！",
   attack: "攻撃",
   defense: "防御",
+  play_now: "今すぐプレイ！",
 };
 
 if (!win.languages) {

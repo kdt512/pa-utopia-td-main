@@ -16,6 +16,7 @@ export const languages = {
   upgrade_max: "업그레이드하여 최대 파워를 잠금 해제하세요!",
   attack: "공격",
   defense: "방어",
+  play_now: "지금 플레이!",
 };
 
 if (!win.languages) {

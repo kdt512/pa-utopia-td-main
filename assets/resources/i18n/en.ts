@@ -16,6 +16,7 @@ export const languages = {
   upgrade_max: "Upgrade to unlock max power!",
   attack: "ATTACK",
   defense: "DEFENSE",
+  play_now:"PLAY NOW"
 };
 
 if (!win.languages) {

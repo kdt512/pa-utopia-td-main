@@ -16,6 +16,7 @@ export const languages = {
   upgrade_max: "升級以解鎖最大威力!",
   attack: "攻擊",
   defense: "防禦",
+  play_now: "立即遊玩",
 };
 
 if (!win.languages) {
