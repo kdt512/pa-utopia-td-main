@@ -5,6 +5,7 @@ export const languages = {
   attack_upgrade: "공격 강화",
   tap_to_upgrade: "탭해서 강화!",
   upgrade: "강화",
+  upgrade_plus: "강화+++",
   stats_type_0: "체력",
   stats_type_1: "데미지",
   stats_type_2: "속도",
@@ -16,6 +17,9 @@ export const languages = {
   upgrade_max: "업그레이드하여 최대 파워를 잠금 해제하세요!",
   attack: "공격",
   defense: "방어",
+  download_now: "지금 다운로드",
+  try_again: "다시 시도",
+  play_now: "지금 플레이",
 };
 
 if (!win.languages) {

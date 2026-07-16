@@ -5,6 +5,7 @@ export const languages = {
   attack_upgrade: "攻擊強化",
   tap_to_upgrade: "點擊升級!",
   upgrade: "升級",
+  upgrade_plus: "升級+++",
   stats_type_0: "生命值",
   stats_type_1: "傷害",
   stats_type_2: "速度",
@@ -16,6 +17,9 @@ export const languages = {
   upgrade_max: "升級以解鎖最大威力!",
   attack: "攻擊",
   defense: "防禦",
+  download_now: "立即下載",
+  try_again: "再試一次",
+  play_now: "立即遊玩",
 };
 
 if (!win.languages) {
