@@ -77,7 +77,7 @@ export class FxManager extends Component {
 
     const uiPos = new Vec3();
     this.mainCamera.convertToUINode(position, this.node, uiPos);
-    fx.setPosition(uiPos);
+    fx.setPosition(new Vec3(uiPos.x, uiPos.y - 50, uiPos.z));
   }
 
   showFire(position: Vec3): void {
