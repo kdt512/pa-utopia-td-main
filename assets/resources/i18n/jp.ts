@@ -14,6 +14,9 @@ export const languages = {
   stats_type_6: "クリティカルファクター",
   stats_type_7: "再生",
   upgrade_max: "アップグレードして最大パワーを解放！",
+  attack: "攻撃",
+  defense: "防御",
+  play_now: "今すぐプレイ！",
 };
 
 if (!win.languages) {

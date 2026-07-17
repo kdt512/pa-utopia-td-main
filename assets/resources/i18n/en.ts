@@ -14,6 +14,9 @@ export const languages = {
   stats_type_6: "Critical Factor",
   stats_type_7: "Regen",
   upgrade_max: "Upgrade to unlock max power!",
+  attack: "ATTACK",
+  defense: "DEFENSE",
+  play_now:"PLAY NOW"
 };
 
 if (!win.languages) {

@@ -9,14 +9,14 @@ const { ccclass, property } = _decorator;
 
 @ccclass("Player")
 export class Player extends Component {
-  @property(JsonAsset) private data: JsonAsset = null!;
-  @property({ type: Enum(CharacterType) }) private type: CharacterType =
+  @property(JsonAsset) data: JsonAsset = null!;
+  @property({ type: Enum(CharacterType) })  type: CharacterType =
     CharacterType.PLAYER;
 
   private static instance: Player = null;
-  private attack: Attack = null!;
-  private health: Health = null!;
-  private charData: CharacterDataInterface = null;
+  attack: Attack = null!;
+  health: Health = null!;
+  charData: CharacterDataInterface = null;
 
   onLoad(): void {
     Player.instance = this;

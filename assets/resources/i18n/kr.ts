@@ -14,6 +14,9 @@ export const languages = {
   stats_type_6: "치명타 계수",
   stats_type_7: "재생",
   upgrade_max: "업그레이드하여 최대 파워를 잠금 해제하세요!",
+  attack: "공격",
+  defense: "방어",
+  play_now: "지금 플레이!",
 };
 
 if (!win.languages) {
