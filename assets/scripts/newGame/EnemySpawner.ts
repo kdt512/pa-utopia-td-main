@@ -121,7 +121,6 @@ export class EnemySpawner extends Component {
 
     const enemy = instantiate(enemyPrefab);
     let hpScale = this._currentWaveIndex == 0 ? 0.2 : 1;
-    console.log("hpScale: " + hpScale + " , " + this._currentWaveIndex);
     enemy.parent = this.node;
     enemy.setPosition(x, y, 0);
     enemy.getComponent(Enemy).init(hpScale);

@@ -895,7 +895,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 1218.391959798995,
+    "_orthoHeight": 960,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -1085,7 +1085,10 @@
       "__uuid__": "548daeb7-f149-47c3-b072-63e20b983c1b",
       "__expectedType__": "cc.Prefab"
     },
-    "upgradePrefab": null,
+    "upgradePrefab": {
+      "__uuid__": "0fb32eef-1bf9-46a6-a664-c38d8165a662",
+      "__expectedType__": "cc.Prefab"
+    },
     "sparkleParent": {
       "__id__": 28
     },
@@ -6723,7 +6726,7 @@
   },
   {
     "__type__": "IWaveEnemy",
-    "amount": 20,
+    "amount": 10,
     "delayPerEnemy": 0.25,
     "enemies": [
       {
@@ -6734,7 +6737,7 @@
   },
   {
     "__type__": "IWaveEnemy",
-    "amount": 30,
+    "amount": 15,
     "delayPerEnemy": 0.3,
     "enemies": [
       {
@@ -6745,7 +6748,7 @@
   },
   {
     "__type__": "IWaveEnemy",
-    "amount": 50,
+    "amount": 20,
     "delayPerEnemy": 0.3,
     "enemies": [
       {
