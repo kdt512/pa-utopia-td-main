@@ -22,6 +22,9 @@ export class Attack extends Component {
   @property(Prefab)
   private projectilePrefab: Prefab | null = null;
 
+  @property(Prefab)
+  private projectileLazerPrefab: Prefab | null = null;
+
   @property(Node) private firePoint: Node = null!;
 
   @property(PlayerSkin) private playerSkin: PlayerSkin | null = null;
@@ -32,6 +35,7 @@ export class Attack extends Component {
 
   private attackTimer: number = 0;
   private currentTarget: Node | null = null;
+  private currentLaserNode: Node | null = null;
 
   private player: Player = null!;
 
@@ -46,6 +50,14 @@ export class Attack extends Component {
 
   public setPlayer(player: Player): void {
     this.player = player;
+  }
+
+  public getLaserPrefab(): Prefab | null {
+    return this.projectileLazerPrefab;
+  }
+
+  public getFirePoint(): Node {
+    return this.firePoint;
   }
 
   public setup(damage: number, attackRange: number, attackSpeed: number): void {
@@ -114,9 +126,70 @@ export class Attack extends Component {
       projectile.setTarget(this.currentTarget, this.damage);
 
       if (this.playerSkin) {
-        projectile.setColor(this.playerSkin.getCurrentColor());
+        // projectile.setColor(this.playerSkin.getCurrentColor());
       }
     }
+  }
+
+  /**
+   * Laser: trúng đích tức thời (hitscan), không có thời gian bay như đạn thường.
+   * Không scale theo khoảng cách - giữ nguyên kích thước gốc do prefab tự quyết định,
+   * chỉ đặt vị trí + xoay đúng hướng bắn từ nòng súng.
+   * Tự tìm target riêng (enemy gần nhất trong toàn scene), KHÔNG bị giới hạn bởi
+   * attackRange như attack thường - luôn bắn được miễn còn enemy trên màn hình.
+   */
+  public performLazerAttack(): void {
+    if (!this.projectileLazerPrefab) return;
+
+    const target = this.findNearestEnemyAnyRange();
+    if (!target) return;
+
+    const direction = new Vec3();
+    Vec3.subtract(direction, target.worldPosition, this.node.worldPosition);
+    if (direction.lengthSqr() === 0) return;
+
+    const angle = (Math.atan2(direction.y, direction.x) * 180) / Math.PI;
+    this.node.setRotationFromEuler(0, 0, angle - 90);
+
+    // Gây damage ngay lập tức - laser không cần thời gian bay tới target
+    const health = target.getComponent(Health);
+    health?.takeDamage(this.damage);
+
+    // Huỷ tia laser cũ (nếu còn) trước khi tạo tia mới - tránh nhiều tia chồng lên
+    // nhau cùng lúc (mỗi tia hướng hơi khác nhau do target di chuyển) trông như bị cong.
+    if (this.currentLaserNode && this.currentLaserNode.isValid) {
+      this.currentLaserNode.destroy();
+    }
+
+    const laserNode = instantiate(this.projectileLazerPrefab);
+    this.currentLaserNode = laserNode;
+
+    const scene = director.getScene();
+    if (scene) {
+      scene.addChild(laserNode);
+    } else {
+      this.node.addChild(laserNode);
+    }
+
+    // QUAN TRỌNG: prefab projectileLazerPrefab phải có pivot (gốc node) nằm ở
+    // đầu "đuôi" của tia (phía súng), mesh chỉ trải dài về 1 hướng (+Y cục bộ) -
+    // không để mesh nằm giữa (tâm), nếu không tia sẽ cắt ngang qua nòng súng.
+    // Sửa trong editor: mở prefab, chọn node con chứa mesh, dịch Position.y của nó
+    // sao cho mép mesh chạm đúng gốc (0,0,0) của node cha, thay vì để tâm ở (0,0,0).
+    laserNode.setWorldPosition(this.firePoint.worldPosition);
+    laserNode.setRotationFromEuler(0, 0, angle - 90);
+
+    // Không setTarget() nên tắt hẳn component Projectile - nếu không nó sẽ tự huỷ
+    // node sau 0.1s do nghĩ "không có target" (logic có sẵn trong Projectile.update()),
+    // đè lên thời gian sống mà mình tự quản lý bên dưới.
+    const laserProjectile = laserNode.getComponent(Projectile);
+    if (laserProjectile) laserProjectile.enabled = false;
+
+    // Laser chỉ loé lên tức thời rồi biến mất, không tồn tại lâu như đạn thường
+    this.scheduleOnce(() => {
+      if (laserNode && laserNode.isValid) laserNode.destroy();
+      if (this.currentLaserNode === laserNode) this.currentLaserNode = null;
+    }, 1);
   }
 
   private performMeleeAttack(): void {
@@ -174,6 +247,28 @@ export class Attack extends Component {
       }
       return null;
     }
+  }
+
+  /** Tìm enemy gần nhất trong toàn scene, không giới hạn bởi attackRange - dùng riêng cho laser. */
+  private findNearestEnemyAnyRange(): Node | null {
+    const scene = director.getScene();
+    if (!scene) return null;
+
+    const enemies = scene.getComponentsInChildren(Enemy);
+    let nearest: Node | null = null;
+    let minDistance = Infinity;
+    const currentPos = this.node.worldPosition;
+
+    for (const enemy of enemies) {
+      if (enemy.node && enemy.node.isValid) {
+        const dist = Vec3.distance(currentPos, enemy.node.worldPosition);
+        if (dist < minDistance) {
+          minDistance = dist;
+          nearest = enemy.node;
+        }
+      }
+    }
+    return nearest;
   }
 
   private onUpgradeStats(type: StatsType): void {

@@ -56,6 +56,10 @@ export class Health extends Component {
         });
     }
 
+    public takeDamagePercent(percentOfMax: number): void {
+        this.takeDamage(this.maxHealth * percentOfMax);
+    }
+
     public takeDamage(damage: number): void {
         this.currentHealth -= damage;
         if (this.currentHealth <= 0) {
@@ -64,7 +68,7 @@ export class Health extends Component {
             if(this.playerStats === null)
             {
                 FxManager.instance.createFx(this.node.worldPosition);
-                Currency.instance.rewardKillEnemy();
+                //Currency.instance.rewardKillEnemy();
                 
             }
             else{

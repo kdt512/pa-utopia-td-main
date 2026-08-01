@@ -25,6 +25,7 @@ export class Enemy extends Component {
   private charData: CharacterDataInterface = null;
 
   private hpScale: number = 1;
+  private hasReachedTower: boolean = false;
 
   protected start(): void {}
 
@@ -53,7 +54,7 @@ export class Enemy extends Component {
   }
 
   protected update(dt: number): void {
-    if (!this.target || !this.target.node) return;
+    if (!this.target || !this.target.node || this.hasReachedTower) return;
 
     const currentPos = this.node.position;
     const targetPos = this.target.node.position;
@@ -74,6 +75,11 @@ export class Enemy extends Component {
       Vec3.add(newPos, currentPos, movement);
 
       this.node.setPosition(newPos);
+    } else {
+      // Chạm được vào tháp: trừ 10% máu tháp rồi biến mất.
+      this.hasReachedTower = true;
+      this.target.health.takeDamagePercent(0.1);
+      this.node.destroy();
     }
   }
 
