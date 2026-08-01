@@ -6,6 +6,10 @@ import {
   instantiate,
   Vec3,
   director,
+  tween,
+  Tween,
+  PhysicsSystem,
+  EPhysicsDrawFlags,
 } from "cc";
 import { Projectile } from "./Projectile";
 import { Enemy } from "./Enemy";
@@ -14,6 +18,7 @@ import { Player } from "./Player";
 import { PlayerStats } from "./PlayerStats";
 import { PlayerSkin } from "./PlayerSkin";
 import { StatsType } from "./CharacterDataInterface";
+import { ProjectileLazer } from "./ProjectileLazer";
 
 const { ccclass, property } = _decorator;
 
@@ -29,6 +34,24 @@ export class Attack extends Component {
 
   @property(PlayerSkin) private playerSkin: PlayerSkin | null = null;
 
+  @property({
+    tooltip:
+      "Bật hiển thị debug vật lý (wireframe collider + AABB + constraint) để soi lỗi rotation/collider của laser",
+  })
+  private showPhysicsDebug: boolean = false;
+
+  @property({
+    tooltip:
+      "Bề rộng vùng ảnh hưởng quanh đường bắn của laser - enemy nào lọt vào đây đều bị diệt",
+  })
+  private laserBeamWidth: number = 60;
+
+  @property({
+    tooltip:
+      "Sát thương laser gây cho mọi enemy trên đường bắn (đủ lớn để diệt ngay tại chỗ)",
+  })
+  private laserKillDamage: number = 99999;
+
   private damage: number = 0;
   private attackRange: number = 0;
   private attackSpeed: number = 0;
@@ -42,6 +65,13 @@ export class Attack extends Component {
   private playerStats: PlayerStats = null!;
 
   protected start(): void {
+    // Vẽ wireframe collider + AABB + constraint để soi lỗi rotation/collider của laser.
+    // Cần bật "Geometry Renderer" trong Project Settings > Feature Cropping,
+    // nếu không phần vẽ debug sẽ không hiện dù bật cờ này.
+    PhysicsSystem.instance.debugDrawFlags = this.showPhysicsDebug
+      ? EPhysicsDrawFlags.WIRE_FRAME | EPhysicsDrawFlags.AABB | EPhysicsDrawFlags.CONSTRAINT
+      : EPhysicsDrawFlags.NONE;
+
     this.playerStats = this.node.getComponent(PlayerStats);
     if (this.playerStats !== null) {
       this.playerStats.onUpgradeStats.on(this.onUpgradeStats, this);
@@ -139,30 +169,26 @@ export class Attack extends Component {
    * attackRange như attack thường - luôn bắn được miễn còn enemy trên màn hình.
    */
   public performLazerAttack(): void {
-    if (!this.projectileLazerPrefab) return;
+    if (!this.projectileLazerPrefab || this.currentLaserNode) return;
 
     const target = this.findNearestEnemyAnyRange();
     if (!target) return;
 
+    const origin = this.node.worldPosition.clone();
     const direction = new Vec3();
-    Vec3.subtract(direction, target.worldPosition, this.node.worldPosition);
+    Vec3.subtract(direction, target.worldPosition, origin);
     if (direction.lengthSqr() === 0) return;
+    direction.normalize();
 
     const angle = (Math.atan2(direction.y, direction.x) * 180) / Math.PI;
-    this.node.setRotationFromEuler(0, 0, angle - 90);
 
-    // Gây damage ngay lập tức - laser không cần thời gian bay tới target
-    const health = target.getComponent(Health);
-    health?.takeDamage(this.damage);
-
-    // Huỷ tia laser cũ (nếu còn) trước khi tạo tia mới - tránh nhiều tia chồng lên
-    // nhau cùng lúc (mỗi tia hướng hơi khác nhau do target di chuyển) trông như bị cong.
-    if (this.currentLaserNode && this.currentLaserNode.isValid) {
-      this.currentLaserNode.destroy();
-    }
+    // Diệt tức thời TẤT CẢ enemy nằm trên đường bắn (trong bề rộng laserBeamWidth),
+    // không chỉ 1 con - không phụ thuộc va chạm vật lý vì laser đứng yên tại nòng súng.
+    this.damageEnemiesOnBeam(origin, direction);
 
     const laserNode = instantiate(this.projectileLazerPrefab);
     this.currentLaserNode = laserNode;
+    laserNode.getComponent(ProjectileLazer).setTarget(target);
 
     const scene = director.getScene();
     if (scene) {
@@ -171,25 +197,21 @@ export class Attack extends Component {
       this.node.addChild(laserNode);
     }
 
-    // QUAN TRỌNG: prefab projectileLazerPrefab phải có pivot (gốc node) nằm ở
-    // đầu "đuôi" của tia (phía súng), mesh chỉ trải dài về 1 hướng (+Y cục bộ) -
-    // không để mesh nằm giữa (tâm), nếu không tia sẽ cắt ngang qua nòng súng.
-    // Sửa trong editor: mở prefab, chọn node con chứa mesh, dịch Position.y của nó
-    // sao cho mép mesh chạm đúng gốc (0,0,0) của node cha, thay vì để tâm ở (0,0,0).
     laserNode.setWorldPosition(this.firePoint.worldPosition);
     laserNode.setRotationFromEuler(0, 0, angle - 90);
+   
+    const baseScale = laserNode.scale.clone();
+    laserNode.setScale(0, baseScale.y, baseScale.z);
 
-    // Không setTarget() nên tắt hẳn component Projectile - nếu không nó sẽ tự huỷ
-    // node sau 0.1s do nghĩ "không có target" (logic có sẵn trong Projectile.update()),
-    // đè lên thời gian sống mà mình tự quản lý bên dưới.
-    const laserProjectile = laserNode.getComponent(Projectile);
-    if (laserProjectile) laserProjectile.enabled = false;
-
-    // Laser chỉ loé lên tức thời rồi biến mất, không tồn tại lâu như đạn thường
-    this.scheduleOnce(() => {
-      if (laserNode && laserNode.isValid) laserNode.destroy();
-      if (this.currentLaserNode === laserNode) this.currentLaserNode = null;
-    }, 1);
+    tween(laserNode)
+      .to(0.2, { scale: baseScale }, { easing: "quadOut" })
+      .delay(0.15)
+      .to(0.2, { scale: new Vec3(0, baseScale.y, baseScale.z) }, { easing: "quadIn" })
+      .call(() => {
+        laserNode.destroy();
+        this.currentLaserNode = null;
+      })
+      .start();
   }
 
   private performMeleeAttack(): void {
@@ -269,6 +291,33 @@ export class Attack extends Component {
       }
     }
     return nearest;
+  }
+
+  /**
+   * Diệt tức thời mọi enemy nằm trên đường bắn: chiếu vị trí từng enemy lên tia
+   * (origin -> direction), enemy nào ở phía trước (t >= 0) và cách đường thẳng đó
+   * không quá laserBeamWidth thì bị trúng đạn, bất kể enemy đó ở gần hay xa.
+   */
+  private damageEnemiesOnBeam(origin: Vec3, direction: Vec3): void {
+    const scene = director.getScene();
+    if (!scene) return;
+
+    const enemies = scene.getComponentsInChildren(Enemy);
+    const toEnemy = new Vec3();
+    const perp = new Vec3();
+
+    for (const enemy of enemies) {
+      if (!enemy.node || !enemy.node.isValid) continue;
+
+      Vec3.subtract(toEnemy, enemy.node.worldPosition, origin);
+      const t = Vec3.dot(toEnemy, direction);
+      if (t < 0) continue;
+
+      Vec3.scaleAndAdd(perp, toEnemy, direction, -t);
+      if (perp.length() <= this.laserBeamWidth) {
+        enemy.takeDamage(this.laserKillDamage);
+      }
+    }
   }
 
   private onUpgradeStats(type: StatsType): void {

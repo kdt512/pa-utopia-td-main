@@ -28,17 +28,14 @@
         "__id__": 7
       },
       {
-        "__id__": 11
-      },
-      {
         "__id__": 9
       },
       {
-        "__id__": 13
+        "__id__": 11
       }
     ],
     "_prefab": {
-      "__id__": 15
+      "__id__": 13
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -191,26 +188,36 @@
     "nestedPrefabInstanceRoots": null
   },
   {
-    "__type__": "ba051Q0N2NCj69dywAaYnqo",
+    "__type__": "cc.BoxCollider",
     "_name": "",
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
       "__id__": 1
     },
-    "_enabled": false,
+    "_enabled": true,
     "__prefab": {
       "__id__": 8
     },
-    "rb": {
-      "__id__": 9
+    "_material": null,
+    "_isTrigger": true,
+    "_center": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 10,
+      "z": 0
     },
-    "speed": 100,
+    "_size": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 20,
+      "z": 0
+    },
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "554TMBz7lJJY0NDgyIdk3+"
+    "fileId": "fexuj8smVBmZ4hAzle0SU/"
   },
   {
     "__type__": "cc.RigidBody",
@@ -225,7 +232,7 @@
       "__id__": 10
     },
     "_group": 1,
-    "_type": 1,
+    "_type": 4,
     "_mass": 1,
     "_allowSleep": true,
     "_linearDamping": 0.1,
@@ -250,38 +257,6 @@
     "fileId": "7bJ4UQW61It7E1QudOjWPm"
   },
   {
-    "__type__": "cc.BoxCollider",
-    "_name": "",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "__prefab": {
-      "__id__": 12
-    },
-    "_material": null,
-    "_isTrigger": true,
-    "_center": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 10,
-      "z": 0
-    },
-    "_size": {
-      "__type__": "cc.Vec3",
-      "x": 5,
-      "y": 20,
-      "z": 1
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "fexuj8smVBmZ4hAzle0SU/"
-  },
-  {
     "__type__": "728a2jGyU9AY4ELVtgpTkWY",
     "_name": "",
     "_objFlags": 0,
@@ -291,7 +266,7 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 14
+      "__id__": 12
     },
     "rb": {
       "__id__": 9
