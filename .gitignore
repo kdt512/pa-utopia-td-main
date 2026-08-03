@@ -4,6 +4,7 @@
 #///////////////////////////
 library/
 temp/
+build/
 local/
 profiles/
 native
