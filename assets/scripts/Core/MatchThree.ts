@@ -13,23 +13,20 @@ import {
   director,
   Prefab,
   instantiate,
+  SpriteFrame,
+  Sprite,
 } from "cc";
 import { Player } from "../newGame/Player";
 import { Enemy } from "../newGame/Enemy";
 import { Projectile } from "../newGame/Projectile";
 import { Game, GameState } from "./Game";
+import { GameAudioAdapter } from "./GameAudioAdapter";
+import { AudioPlayer } from "./AudioPlayer";
 const { ccclass, property } = _decorator;
 
 interface SelectedCell {
   row: number;
   col: number;
-}
-
-enum GemShape {
-  Square,
-  Cross,
-  Diamond,
-  XShape,
 }
 
 /**
@@ -98,25 +95,14 @@ export class MatchThree extends Component {
   })
   tutorialHandOffset: Vec3 = new Vec3(0, 60, 0);
 
-  private readonly palette: Color[] = [
-    new Color(214, 36, 108), // 0 - hồng magenta - vuông
-    new Color(240, 146, 40), // 1 - cam - dấu cộng
-    new Color(58, 132, 224), // 2 - xanh dương - chữ X
-    new Color(56, 190, 178), // 3 - ngọc lam - kim cương
-    new Color(70, 176, 90), // 4 - xanh lá - kim cương
-    new Color(228, 228, 232), // 5 - trắng xám - dấu cộng
-    new Color(232, 200, 40), // 6 - vàng - vuông
-  ];
+  @property({
+    type: [SpriteFrame],
+    tooltip: "Ảnh gem theo từng loại (index khớp với INITIAL_LAYOUT)",
+  })
+  gemSpr: SpriteFrame[] = [];
 
-  private readonly shapes: GemShape[] = [
-    GemShape.Square,
-    GemShape.Cross,
-    GemShape.XShape,
-    GemShape.Diamond,
-    GemShape.Diamond,
-    GemShape.Cross,
-    GemShape.Square,
-  ];
+  @property(GameAudioAdapter) public gameAudioAdapter: GameAudioAdapter = null;
+  @property(AudioPlayer) public audioPlayer: AudioPlayer = null;
 
   /** Bàn khởi đầu cố định, mô phỏng theo ảnh ref (5 cột x 4 hàng). */
   private static readonly INITIAL_LAYOUT: number[][] = [
@@ -132,7 +118,6 @@ export class MatchThree extends Component {
   private touchStartCell: SelectedCell | null = null;
   private touchStartPos: Vec3 | null = null;
   private isBusy = false;
-  private boardLaserNode: Node | null = null;
   private gunPosition: Vec3 = new Vec3();
   private successfulMatchCount = 0;
   private hasTriggeredStore = false;
@@ -214,7 +199,7 @@ export class MatchThree extends Component {
   private randomColorAvoidingMatch(row: number, col: number): number {
     let color: number;
     do {
-      color = Math.floor(Math.random() * this.palette.length);
+      color = Math.floor(Math.random() * this.gemSpr.length);
     } while (
       (col >= 2 &&
         this.board[row][col - 1] === color &&
@@ -243,8 +228,11 @@ export class MatchThree extends Component {
     node.layer = this.gridRoot!.layer;
     const ui = node.addComponent(UITransform);
     ui.setContentSize(this.cellSize, this.cellSize);
-    const g = node.addComponent(Graphics);
-    this.drawGem(g, color);
+
+    const sprite = node.addComponent(Sprite);
+    sprite.sizeMode = Sprite.SizeMode.CUSTOM;
+    sprite.spriteFrame = this.gemSpr[color] ?? null;
+
     this.gridRoot!.addChild(node);
 
     const pos = this.cellPosition(row, col);
@@ -258,70 +246,6 @@ export class MatchThree extends Component {
       node.setPosition(pos);
     }
     return node;
-  }
-
-  private drawGem(g: Graphics, colorIndex: number) {
-    g.clear();
-    const half = this.cellSize / 2 - 4;
-    const color = this.palette[colorIndex];
-    const shape = this.shapes[colorIndex];
-
-    g.fillColor = color;
-    g.strokeColor = new Color(0, 0, 0, 100);
-    g.lineWidth = 3;
-
-    switch (shape) {
-      case GemShape.Square:
-        this.drawSquareGem(g, half);
-        break;
-      case GemShape.Cross:
-        this.drawCrossGem(g, half);
-        break;
-      case GemShape.Diamond:
-        this.drawDiamondGem(g, half);
-        break;
-      case GemShape.XShape:
-        this.drawXGem(g, half);
-        break;
-    }
-  }
-
-  private drawSquareGem(g: Graphics, half: number) {
-    g.roundRect(-half, -half, half * 2, half * 2, 14);
-    g.fill();
-    g.stroke();
-  }
-
-  private drawCrossGem(g: Graphics, half: number) {
-    const arm = half * 0.55;
-    g.roundRect(-arm, -half, arm * 2, half * 2, 8);
-    g.roundRect(-half, -arm, half * 2, arm * 2, 8);
-    g.fill();
-  }
-
-  private drawDiamondGem(g: Graphics, half: number) {
-    g.moveTo(0, half);
-    g.lineTo(half, 0);
-    g.lineTo(0, -half);
-    g.lineTo(-half, 0);
-    g.close();
-    g.fill();
-    g.stroke();
-  }
-
-  private drawXGem(g: Graphics, half: number) {
-    const arm = half * 0.42;
-    const tip = half * 0.72;
-    g.moveTo(0, arm);
-    g.lineTo(tip, tip);
-    g.lineTo(arm, 0);
-    g.lineTo(tip, -tip);
-    g.lineTo(0, -arm);
-    g.lineTo(-tip, -tip);
-    g.lineTo(-arm, 0);
-    g.lineTo(-tip, tip);
-    g.close();
-    g.fill();
   }
 
   private getLocalTouchPos(event: EventTouch): Vec3 {
@@ -454,7 +378,7 @@ export class MatchThree extends Component {
       this.isBusy = false;
       return;
     }
-
+    this.audioPlayer.playSound(this.gameAudioAdapter.matchSound);
     this.successfulMatchCount++;
     if (this.successfulMatchCount > this.matchesBeforeStore) {
       this.triggerTapToStore();
@@ -533,7 +457,7 @@ export class MatchThree extends Component {
       const matches = this.findMatches();
       if (matches.size === 0) break;
 
-    //   this.flashMatchBoard(matches);
+      //   this.flashMatchBoard(matches);
       this.fireLaserAtEnemies();
       await this.clearMatches(matches);
       await this.collapseAndRefill();
@@ -682,7 +606,7 @@ export class MatchThree extends Component {
       const missing = this.rows - remaining.length;
       for (let i = 0; i < missing; i++) {
         const targetRow = missing - 1 - i;
-        const color = Math.floor(Math.random() * this.palette.length);
+        const color = Math.floor(Math.random() * this.gemSpr.length);
         this.board[targetRow][c] = color;
         const node = this.createGemNode(targetRow, c, color, true);
         this.gemNodes[targetRow][c] = node;
@@ -691,44 +615,6 @@ export class MatchThree extends Component {
     }
 
     await Promise.all(anims);
-  }
-
-  /** Bắn 1 tia laser thẳng từ khẩu súng cố định bên dưới bàn lên đúng vị trí vừa match. */
-  private flashMatchBoard(matches: Set<string>) {
-    if (!this.boardLaserNode) {
-      this.boardLaserNode = new Node("BoardLaserBeam");
-      this.boardLaserNode.layer = this.gridRoot!.layer;
-      this.boardLaserNode.addComponent(UITransform);
-      this.boardLaserNode.addComponent(Graphics);
-      this.boardLaserNode.addComponent(UIOpacity);
-      this.gridRoot!.addChild(this.boardLaserNode);
-    }
-
-    const g = this.boardLaserNode.getComponent(Graphics)!;
-    const opacity = this.boardLaserNode.getComponent(UIOpacity)!;
-
-    let sumX = 0;
-    let sumY = 0;
-    let count = 0;
-    matches.forEach((key) => {
-      const [r, c] = key.split(",").map(Number);
-      const pos = this.cellPosition(r, c);
-      sumX += pos.x;
-      sumY += pos.y;
-      count++;
-    });
-    const targetX = count > 0 ? sumX / count : 0;
-    const targetY = count > 0 ? sumY / count : 0;
-
-    this.drawBeam(g, this.gunPosition.x, this.gunPosition.y, targetX, targetY);
-
-    Tween.stopAllByTarget(opacity);
-    opacity.opacity = 255;
-    tween(opacity)
-      .delay(0.08)
-      .to(0.22, { opacity: 0 }, { easing: "quadIn" })
-      .call(() => g.clear())
-      .start();
   }
 
   private drawBeam(
@@ -767,18 +653,10 @@ export class MatchThree extends Component {
     const player = Player.Instance;
     const scene = director.getScene();
     if (!player || !player.node || !player.node.isValid || !scene) return;
+    this.audioPlayer.playSound(this.gameAudioAdapter.lazer);
 
     const attack = player.attack;
     attack?.performLazerAttack();
-  }
-
-  private spawnLaserProjectile(scene: Node, laserPrefab: Prefab, firePoint: Node, target: Enemy) {
-    const projectileNode = instantiate(laserPrefab);
-    scene.addChild(projectileNode);
-    projectileNode.setWorldPosition(firePoint.worldPosition);
-
-    const projectile = projectileNode.getComponent(Projectile);
-    projectile?.setTarget(target.node, this.laserDamage);
   }
 
   private delay(seconds: number): Promise<void> {
@@ -882,9 +760,9 @@ export class MatchThree extends Component {
     const posFrom = this.cellPosition(from.row, from.col).add(
       this.tutorialHandOffset,
     );
-    const posTo = this.cellPosition(to.row, to.col).add(
-      this.tutorialHandOffset,
-    ).add(new Vec3(0, -50, 0));
+    const posTo = this.cellPosition(to.row, to.col)
+      .add(this.tutorialHandOffset)
+      .add(new Vec3(0, -50, 0));
 
     node.active = true;
     node.setPosition(posFrom.add(new Vec3(0, -50, 0)));

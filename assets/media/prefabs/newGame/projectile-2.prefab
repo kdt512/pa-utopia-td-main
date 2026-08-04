@@ -271,6 +271,10 @@
     "rb": {
       "__id__": 9
     },
+    "texture": {
+      "__uuid__": "ed337d16-3a40-48d4-9a24-bc24c6e6060b@6c48a",
+      "__expectedType__": "cc.Texture2D"
+    },
     "_id": ""
   },
   {

@@ -6,6 +6,7 @@ import {
   CharacterType,
 } from "./CharacterDataInterface";
 import { Attack } from "./Attack";
+import { Game, GameState } from "../Core/Game";
 const { ccclass, property } = _decorator;
 
 @ccclass("Enemy")
@@ -55,6 +56,7 @@ export class Enemy extends Component {
 
   protected update(dt: number): void {
     if (!this.target || !this.target.node || this.hasReachedTower) return;
+    if (Game.instance.CurrentGameState !== GameState.GamePlay) return;
 
     const currentPos = this.node.position;
     const targetPos = this.target.node.position;

@@ -10,7 +10,9 @@
   },
   "_techIdx": 0,
   "_defines": [
-    {},
+    {
+      "USE_TEXTURE": true
+    },
     {},
     {}
   ],
@@ -45,12 +47,9 @@
   ],
   "_props": [
     {
-      "mainColor": {
-        "__type__": "cc.Color",
-        "r": 0,
-        "g": 255,
-        "b": 31,
-        "a": 255
+      "mainTexture": {
+        "__uuid__": "ed337d16-3a40-48d4-9a24-bc24c6e6060b@6c48a",
+        "__expectedType__": "cc.Texture2D"
       }
     },
     {},

@@ -8,6 +8,7 @@ import {
   Collider,
   ICollisionEvent,
   Vec3,
+  Texture2D,
 } from "cc";
 const { ccclass, property } = _decorator;
 
@@ -15,6 +16,13 @@ const { ccclass, property } = _decorator;
 export class ProjectileLazer extends Component {
   @property(RigidBody)
   private rb: RigidBody = null!;
+
+  @property({
+    type: Texture2D,
+    tooltip:
+      "Ảnh (texture) hiển thị trên tia laser - gán vào mainTexture của material lúc chạy",
+  })
+  private texture: Texture2D | null = null;
 
   private visualRenderer: MeshRenderer = null!;
   private target: Node = null!;
@@ -24,6 +32,15 @@ export class ProjectileLazer extends Component {
     if (collider) {
       // Đăng ký sự kiện va chạm
       collider.on("onTriggerEnter", this.onCollisionEnter, this);
+    }
+
+    this.visualRenderer = this.getComponentInChildren(MeshRenderer);
+    if (this.visualRenderer && this.texture) {
+      const material = this.visualRenderer.material;
+      // Effect builtin-unlit chỉ sample texture khi macro USE_TEXTURE bật -
+      // set property mainTexture thôi chưa đủ, phải bật macro này thì shader mới đọc texture.
+      material?.recompileShaders({ USE_TEXTURE: true });
+      material?.setProperty("mainTexture", this.texture);
     }
   }
 
