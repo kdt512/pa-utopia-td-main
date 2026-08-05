@@ -727,10 +727,6 @@
       "__uuid__": "7381f189-6e20-4198-938b-f307adebfb63",
       "__expectedType__": "cc.AudioClip"
     },
-    "lazer": {
-      "__uuid__": "44d8b3f7-f738-41ef-9511-4d15a12b41b7",
-      "__expectedType__": "cc.AudioClip"
-    },
     "_id": "4f5rKhEDVCOp9s0Fz1Huxi"
   },
   {
@@ -810,7 +806,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 540,
-      "y": 960,
+      "y": 960.0000000000001,
       "z": -2
     },
     "_lrot": {
@@ -895,7 +891,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 960,
+    "_orthoHeight": 960.0000000000001,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -2010,7 +2006,7 @@
     "playerSkin": {
       "__id__": 46
     },
-    "showPhysicsDebug": true,
+    "showPhysicsDebug": false,
     "laserBeamWidth": 60,
     "laserKillDamage": 99999,
     "_id": "58yKH4n9FL+5x5rrqM+gA3"
@@ -2433,18 +2429,15 @@
       "__uuid__": "9227e9d5-6147-45fb-adff-5b691ed2b400",
       "__expectedType__": "cc.Prefab"
     },
-    "projectileLazerPrefab": {
-      "__uuid__": "f36f5d3a-08d5-410e-9eb6-8ca7ed2c1f07",
-      "__expectedType__": "cc.Prefab"
-    },
+    "projectileLazerPrefab": null,
     "firePoint": {
       "__id__": 60
     },
     "playerSkin": {
       "__id__": 57
     },
-    "showPhysicsDebug": true,
-    "laserBeamWidth": 5,
+    "showPhysicsDebug": false,
+    "laserBeamWidth": 60,
     "laserKillDamage": 99999,
     "_id": "15WCY0lLpB5I4jMTTr1TWY"
   },
@@ -21723,6 +21716,7 @@
     "__type__": "7d0693oJNZDXL5YicuefN+m",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 584
     },
@@ -21734,7 +21728,7 @@
     "totalTime": 1,
     "interval": 2,
     "playOnLoad": true,
-    "_id": ""
+    "_id": "96e4im4gtJsoiykiTcDkeK"
   },
   {
     "__type__": "cc.CompPrefabInfo",
@@ -22257,7 +22251,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 1080,
-      "height": 1920
+      "height": 1920.0000000000002
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
