@@ -60,7 +60,6 @@ export class PlayerSkin extends Component {
 
   private applySkinForLevel(level: number): void {
     let tierIndex = 0;
-    console.log("applySkinForLevel; "+level)
     for (let i = 0; i < this.levelThresholds.length; i++) {
       if (level >= this.levelThresholds[i]) {
         tierIndex = i;

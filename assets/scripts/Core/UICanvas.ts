@@ -36,7 +36,7 @@ export class UICanvas extends Component {
 
   private oneTime: boolean = false;
 
-  onLoad(): void {}
+  onLoad(): void { }
 
   public init(game: Game): void {
     // this.node.active = true;
@@ -129,17 +129,12 @@ export class UICanvas extends Component {
   }
 
   upgradeTutPa6() {
-    console.log("UICanvas: Upgrade tutorial for PA6");
     this.tutNode.active = false;
 
     if (!this.oneTime) {
       this.oneTime = true;
       Game.instance.CurrentGameState = GameState.GamePlay;
     }
-    console.log(
-      "Current DAMAGE level:",
-      this.playerStats.getStats(StatsType.DAMAGE).level,
-    );
     if (this.playerStats.getStats(StatsType.DAMAGE).level < 20) {
       for (let i = 0; i < 4; i++) {
         this.playerStats.upgradeStats(StatsType.DAMAGE);
