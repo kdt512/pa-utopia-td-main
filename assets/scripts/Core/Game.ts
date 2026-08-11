@@ -1,4 +1,4 @@
-import { _decorator, Camera, Canvas, Component, Node } from "cc";
+import { _decorator, Camera, Canvas, Component, director, Node } from "cc";
 import { GameFlow } from "./GameFlow";
 import { UICanvas } from "./UICanvas";
 import { Signal } from "../eventSystem/Signal";
@@ -111,5 +111,10 @@ export class Game extends Component {
 
   public GameCallCTA(): void {
     this.gameFlow.callCTA();
+  }
+
+  /** Gắn vào nút Replay trên màn hình fail để chơi lại từ đầu. */
+  public replay(): void {
+    director.loadScene(director.getScene().name);
   }
 }

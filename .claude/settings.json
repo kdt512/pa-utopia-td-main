@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e ' *)",
+      "Bash(npx tsc *)",
+      "Read(//d//**)",
+      "Read(//c/ProgramData/cocos/editors/Creator/3.8.8/resources/resources/3d/engine/bin/.declarations/**)"
+    ]
+  }
+}
