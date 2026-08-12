@@ -715,18 +715,9 @@
       "__uuid__": "f1974f64-d0a1-4312-bd1f-5f0ddbd42704",
       "__expectedType__": "cc.AudioClip"
     },
-    "trafficSound1": {
-      "__uuid__": "cc28d37e-0214-4f96-bd55-e43fc21dde15",
-      "__expectedType__": "cc.AudioClip"
-    },
-    "trafficSound2": {
-      "__uuid__": "abc8fea4-bc2a-4053-98d9-9d35dc86d36e",
-      "__expectedType__": "cc.AudioClip"
-    },
-    "helpSound": {
-      "__uuid__": "7381f189-6e20-4198-938b-f307adebfb63",
-      "__expectedType__": "cc.AudioClip"
-    },
+    "trafficSound1": null,
+    "trafficSound2": null,
+    "helpSound": null,
     "_id": "4f5rKhEDVCOp9s0Fz1Huxi"
   },
   {
