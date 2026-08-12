@@ -15,6 +15,7 @@ import {
   instantiate,
   SpriteFrame,
   Sprite,
+  ParticleSystem2D,
 } from "cc";
 import { Player } from "../newGame/Player";
 import { Enemy } from "../newGame/Enemy";
@@ -567,6 +568,8 @@ export class MatchThree extends Component {
       this.gemNodes[r][c] = null;
       if (!node) return;
 
+      this.spawnMatchFx(node);
+
       anims.push(
         new Promise((resolve) => {
           tween(node)
@@ -581,6 +584,23 @@ export class MatchThree extends Component {
       );
     });
     return Promise.all(anims).then(() => {});
+  }
+
+  /** Nổ FX tại vị trí gem vừa match được, dùng node mẫu fxTemp (clone rồi tự huỷ sau 1 khoảng ngắn). */
+  private spawnMatchFx(node: Node) {
+    if (!this.fxTemp) return;
+
+    const fx = instantiate(this.fxTemp);
+    fx.active = true;
+    fx.layer = this.gridRoot!.layer;
+    this.gridRoot!.addChild(fx);
+    fx.setPosition(node.position);
+    fx.getComponent(ParticleSystem2D).spriteFrame =
+      node.getComponent(Sprite).spriteFrame;
+
+    this.scheduleOnce(() => {
+      if (fx && fx.isValid) fx.destroy();
+    }, 1);
   }
 
   private async collapseAndRefill() {

@@ -1,6 +1,7 @@
 {
   "buildPlatform": "web-mobile",
-  "orientation": "auto",
+  "orientation": "portrait",
+  "extName": "UTD_PA4_MixPuzzle_Match3_KR_",
   "exportChannels": [
     "Mintegral",
     "AppLovin",
