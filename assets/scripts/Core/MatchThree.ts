@@ -104,6 +104,9 @@ export class MatchThree extends Component {
   @property(GameAudioAdapter) public gameAudioAdapter: GameAudioAdapter = null;
   @property(AudioPlayer) public audioPlayer: AudioPlayer = null;
 
+  @property(Node)
+  fxTemp: Node | null = null;
+
   /** Bàn khởi đầu cố định, mô phỏng theo ảnh ref (5 cột x 4 hàng). */
   private static readonly INITIAL_LAYOUT: number[][] = [
     [0, 1, 2, 1, 3],
