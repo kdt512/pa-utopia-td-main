@@ -20,6 +20,8 @@ export const languages = {
   download_now: "Download Now",
   try_again: "Try Again",
   play_now: "Play Now",
+  title_game_desc: "The idle tower defense",
+  victory: "VICTORY",
 };
 
 if (!win.languages) {

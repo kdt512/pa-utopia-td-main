@@ -20,6 +20,8 @@ export const languages = {
   download_now: "今すぐダウンロード",
   try_again: "もう一度試す",
   play_now: "今すぐプレイ",
+  title_game_desc: "アイドルタワーディフェンス",
+  victory: "勝利",
 };
 
 if (!win.languages) {

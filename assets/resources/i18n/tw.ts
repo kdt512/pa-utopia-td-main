@@ -20,6 +20,8 @@ export const languages = {
   download_now: "立即下載",
   try_again: "再試一次",
   play_now: "立即遊玩",
+  title_game_desc: "伊德塔防",
+  victory: "勝利",
 };
 
 if (!win.languages) {

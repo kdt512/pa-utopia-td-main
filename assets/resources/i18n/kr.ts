@@ -20,6 +20,8 @@ export const languages = {
   download_now: "지금 다운로드",
   try_again: "다시 시도",
   play_now: "지금 플레이",
+  title_game_desc: "방치형 타워 디펜스",
+  victory: "승리",
 };
 
 if (!win.languages) {
