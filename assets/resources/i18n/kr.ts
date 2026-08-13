@@ -20,6 +20,7 @@ export const languages = {
   match_tut: "매치하여 하이퍼빔을 사용하세요!",
   try_again: "다시 시도",
   download_now: "지금 다운로드",
+  title_game_desc: "방치형 타워 디펜스",
 };
 
 if (!win.languages) {

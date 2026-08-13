@@ -20,6 +20,7 @@ export const languages = {
   match_tut: "配對以使用超能光束！",
   try_again: "再試一次",
   download_now: "立即下載",
+  title_game_desc: "伊德塔防",
 };
 
 if (!win.languages) {

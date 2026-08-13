@@ -20,6 +20,7 @@ export const languages = {
   match_tut: "Match to use Hyper Beam!",
   try_again: "Try Again",
   download_now: "Download Now",
+  title_game_desc: "The idle tower defense",
 };
 
 if (!win.languages) {

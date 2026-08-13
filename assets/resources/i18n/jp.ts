@@ -20,6 +20,7 @@ export const languages = {
   match_tut: "マッチしてハイパービームを使おう！",
   try_again: "もう一度挑戦",
   download_now: "今すぐダウンロード",
+  title_game_desc: "アイドルタワーディフェンス",
 };
 
 if (!win.languages) {
