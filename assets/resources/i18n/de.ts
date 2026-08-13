@@ -18,6 +18,8 @@ export const languages = {
   defense: "VERTEIDIGUNG",
   play_now: "JETZT SPIELEN",
   match_tut: "Kombiniere, um den Hyper-Beam einzusetzen!",
+  try_again: "Erneut versuchen",
+  download_now: "Jetzt herunterladen"
 };
 
 if (!win.languages) {

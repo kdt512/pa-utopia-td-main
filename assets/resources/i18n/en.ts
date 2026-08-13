@@ -16,8 +16,10 @@ export const languages = {
   upgrade_max: "Upgrade to unlock max power!",
   attack: "ATTACK",
   defense: "DEFENSE",
-  play_now:"PLAY NOW",
-  match_tut: "Match to use Hyper Beam!"
+  play_now: "PLAY NOW",
+  match_tut: "Match to use Hyper Beam!",
+  try_again: "Try Again",
+  download_now: "Download Now",
 };
 
 if (!win.languages) {

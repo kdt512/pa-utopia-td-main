@@ -18,6 +18,8 @@ export const languages = {
   defense: "防禦",
   play_now: "立即遊玩",
   match_tut: "配對以使用超能光束！",
+  try_again: "再試一次",
+  download_now: "立即下載",
 };
 
 if (!win.languages) {

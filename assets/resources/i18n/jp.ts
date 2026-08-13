@@ -18,6 +18,8 @@ export const languages = {
   defense: "防御",
   play_now: "今すぐプレイ！",
   match_tut: "マッチしてハイパービームを使おう！",
+  try_again: "もう一度挑戦",
+  download_now: "今すぐダウンロード",
 };
 
 if (!win.languages) {

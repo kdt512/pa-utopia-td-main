@@ -18,6 +18,8 @@ export const languages = {
   defense: "방어",
   play_now: "지금 플레이!",
   match_tut: "매치하여 하이퍼빔을 사용하세요!",
+  try_again: "다시 시도",
+  download_now: "지금 다운로드",
 };
 
 if (!win.languages) {
