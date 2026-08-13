@@ -17,6 +17,7 @@ export const languages = {
   attack: "공격",
   defense: "방어",
   play_now: "지금 플레이!",
+  match_tut: "매치하여 하이퍼빔을 사용하세요!",
 };
 
 if (!win.languages) {

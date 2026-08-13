@@ -17,6 +17,7 @@ export const languages = {
   attack: "攻撃",
   defense: "防御",
   play_now: "今すぐプレイ！",
+  match_tut: "マッチしてハイパービームを使おう！",
 };
 
 if (!win.languages) {

@@ -16,7 +16,8 @@ export const languages = {
   upgrade_max: "Verbessern, um maximale Kraft freizuschalten!",
   attack: "ANGRIFF",
   defense: "VERTEIDIGUNG",
-  play_now:"JETZT SPIELEN"
+  play_now: "JETZT SPIELEN",
+  match_tut: "Kombiniere, um den Hyper-Beam einzusetzen!",
 };
 
 if (!win.languages) {

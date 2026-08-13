@@ -89,6 +89,9 @@ export class MatchThree extends Component {
   })
   tutorialHandPrefab: Node | null = null;
 
+  @property(Node)
+  tutorialText: Node | null = null;
+
   @property({
     type: Vec3,
     tooltip:
@@ -753,6 +756,7 @@ export class MatchThree extends Component {
     this.tutorialHandNode.removeFromParent();
     this.tutorialHandNode.destroy();
     this.tutorialHandNode = null;
+    this.tutorialText.active = false;
   }
 
   /** Dựng icon tay từ prefab do bạn cung cấp (tutorialHandPrefab), tái sử dụng nếu đã tồn tại. */

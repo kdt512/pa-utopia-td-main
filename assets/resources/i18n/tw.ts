@@ -17,6 +17,7 @@ export const languages = {
   attack: "攻擊",
   defense: "防禦",
   play_now: "立即遊玩",
+  match_tut: "配對以使用超能光束！",
 };
 
 if (!win.languages) {
