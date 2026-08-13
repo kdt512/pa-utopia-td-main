@@ -41,6 +41,7 @@ export class FxManager extends Component {
     this.mainCamera.convertToUINode(position, this.node, uiPos);
     fxComp.setPosition(uiPos);
 
+    console.log("createFx sparkle");
     const sparkle = instantiate(this.sparklePrefab);
     sparkle.parent = this.sparkleParent;
     sparkle.setPosition(position);

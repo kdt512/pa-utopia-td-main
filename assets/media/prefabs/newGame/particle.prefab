@@ -125,7 +125,10 @@
     "bakeSettings": {
       "__id__": 5
     },
-    "_mesh": null,
+    "_mesh": {
+      "__uuid__": "1263d74c-8167-4928-91a6-4e2672411f47@fc873",
+      "__expectedType__": "cc.Mesh"
+    },
     "_shadowCastingMode": 0,
     "_shadowReceivingMode": 1,
     "_shadowBias": 0,

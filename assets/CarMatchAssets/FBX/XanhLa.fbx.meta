@@ -41,6 +41,26 @@
       ],
       "subMetas": {}
     },
+    "48b02": {
+      "importer": "gltf-embeded-image",
+      "uuid": "f93cc3f9-ece7-452f-b957-9c341068c5d8@48b02",
+      "displayName": "",
+      "id": "48b02",
+      "name": "base_color_texture.image",
+      "userData": {
+        "gltfIndex": 0,
+        "fixAlphaTransparencyArtifacts": true,
+        "hasAlpha": true,
+        "type": "texture"
+      },
+      "ver": "1.0.3",
+      "imported": true,
+      "files": [
+        ".json",
+        ".png"
+      ],
+      "subMetas": {}
+    },
     "7d6ab": {
       "importer": "texture",
       "uuid": "f93cc3f9-ece7-452f-b957-9c341068c5d8@7d6ab",
@@ -54,8 +74,8 @@
         "magfilter": "linear",
         "mipfilter": "none",
         "anisotropy": 0,
-        "isUuid": false,
-        "imageUuidOrDatabaseUri": "db://assets/CarMatchAssets/Textures/XanhLa.jpg"
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "f93cc3f9-ece7-452f-b957-9c341068c5d8@48b02"
       },
       "ver": "1.0.22",
       "imported": true,
@@ -101,7 +121,7 @@
     "imageMetas": [
       {
         "name": "base_color_texture",
-        "uri": "db://assets/CarMatchAssets/Textures/XanhLa.jpg"
+        "uri": "f93cc3f9-ece7-452f-b957-9c341068c5d8@48b02"
       }
     ],
     "fbx": {
