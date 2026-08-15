@@ -5,6 +5,7 @@ export const languages = {
   attack_upgrade: "Attack Upgrade",
   tap_to_upgrade: "Tap to upgrade!",
   upgrade: "Upgrade",
+  upgrade_plus: "Upgrade+++",
   stats_type_0: "Health",
   stats_type_1: "Damage",
   stats_type_2: "Speed",
@@ -16,7 +17,11 @@ export const languages = {
   upgrade_max: "Upgrade to unlock max power!",
   attack: "ATTACK",
   defense: "DEFENSE",
-  play_now:"PLAY NOW"
+  download_now: "Download Now",
+  try_again: "Try Again",
+  play_now: "Play Now",
+  title_game_desc: "The idle tower defense",
+  victory: "VICTORY",
 };
 
 if (!win.languages) {

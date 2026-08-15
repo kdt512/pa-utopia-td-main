@@ -33,10 +33,11 @@ export class UICanvas extends Component {
   @property(Node) private player: Node = null;
   @property(Node) private fireCircle: Node = null;
   @property(Node) private yellowCircle: Node = null;
+  @property(Node) private logo: Node = null;
 
   private oneTime: boolean = false;
 
-  onLoad(): void { }
+  onLoad(): void {}
 
   public init(game: Game): void {
     // this.node.active = true;
@@ -96,6 +97,7 @@ export class UICanvas extends Component {
     } else {
       Game.instance.GameCallCTA();
       this.dowloadPanel.active = true;
+      this.logo.active = false;
       Game.instance.CurrentGameState = GameState.Win;
     }
   }
@@ -146,6 +148,7 @@ export class UICanvas extends Component {
     } else {
       Game.instance.GameCallCTA();
       this.dowloadPanel.active = true;
+      this.logo.active = false;
       Game.instance.CurrentGameState = GameState.None;
     }
   }

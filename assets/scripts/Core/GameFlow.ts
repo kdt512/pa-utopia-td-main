@@ -99,7 +99,7 @@ export class GameFlow {
       );
     } else {
       sys.openURL(
-        "https://apps.apple.com/us/app/utopia-idle-tower-defense/id6758493769",
+        "https://apps.apple.com/vn/app/utopia-idle-tower-defense/id6758493769?l=vi",
       );
     }
   }

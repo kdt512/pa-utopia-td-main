@@ -5,6 +5,7 @@ export const languages = {
   attack_upgrade: "攻撃強化",
   tap_to_upgrade: "タップで強化!",
   upgrade: "強化",
+  upgrade_plus: "強化+++",
   stats_type_0: "体力",
   stats_type_1: "ダメージ",
   stats_type_2: "スピード",
@@ -16,7 +17,11 @@ export const languages = {
   upgrade_max: "アップグレードして最大パワーを解放！",
   attack: "攻撃",
   defense: "防御",
-  play_now: "今すぐプレイ！",
+  download_now: "今すぐダウンロード",
+  try_again: "もう一度試す",
+  play_now: "今すぐプレイ",
+  title_game_desc: "アイドルタワーディフェンス",
+  victory: "勝利",
 };
 
 if (!win.languages) {
