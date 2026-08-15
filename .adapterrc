@@ -1,7 +1,7 @@
 {
   "buildPlatform": "web-mobile",
   "orientation": "portrait",
-  "extName": "UTD_PA6_TapToUpgrade_",
+  "extName": "UTD_PA3_TW_",
   "exportChannels": [
     "Mintegral",
     "AppLovin",
@@ -12,10 +12,10 @@
   ],
   "injectOptions": {
     "AppLovin": {
-      "head": "<script>function mraidOpenPlayStore(){mraid.open('https://play.google.com/store/apps/details?id=com.av.voxelshooter&hl=en');}function mraidOpenAppStore(id){mraid.open('https://apps.apple.com/us/app/voxel-shooter/id6779878307');}</script>"
+      "head": "<script>function mraidOpenPlayStore(){mraid.open('https://play.google.com/store/apps/details?id=com.legendarylabs.utopia&pcampaignid=web_share');}function mraidOpenAppStore(id){mraid.open('https://apps.apple.com/us/app/utopia-idle-tower-defense/id6758493769');}</script>"
     },
     "Unity": {
-      "body": "<script>function mraidOpenPlayStore(){mraid.open('https://play.google.com/store/apps/details?id=com.av.voxelshooter&hl=en');}function mraidOpenAppStore(id){mraid.open('https://apps.apple.com/us/app/voxel-shooter/id6779878307');}</script>",
+      "body": "<script>function mraidOpenPlayStore(){mraid.open('https://play.google.com/store/apps/details?id=com.legendarylabs.utopia&pcampaignid=web_share');}function mraidOpenAppStore(id){mraid.open('https://apps.apple.com/us/app/utopia-idle-tower-defense/id6758493769');}</script>",
       "sdkScript": "<script src=\"./mraid.js\"></script>"
     }
   }
