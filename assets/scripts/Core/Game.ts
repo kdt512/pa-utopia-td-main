@@ -26,6 +26,8 @@ export class Game extends Component {
 
   @property(Node) public winPopUp: Node = null;
   @property(Node) public losePopUp: Node = null;
+  @property(Node) public logo: Node = null;
+
 
   private gameFlow: GameFlow = null;
   private isGameStarted = false;
@@ -36,7 +38,7 @@ export class Game extends Component {
   public static instance: Game = null;
 
   protected onLoad(): void {
-    i18n.init("kr");
+    i18n.init("tw");
     this.gameFlow = new GameFlow(this.audioPlayer, this.setup);
     Game.instance = this;
   }
@@ -89,6 +91,7 @@ export class Game extends Component {
         this.winPopUp.active = true;
         // this.levelManager.stopGame();
         this.audioPlayer.playSound(this.gameAudioAdapter.winSound);
+        this.logo.active = false;
 
         break;
       case GameState.Lose:
@@ -97,6 +100,7 @@ export class Game extends Component {
         this.losePopUp.active = true;
         // this.levelManager.stopGame();
         this.audioPlayer.playSound(this.gameAudioAdapter.loseSound);
+        this.logo.active = false;
         break;
     }
   }

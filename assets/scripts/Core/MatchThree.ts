@@ -111,6 +111,9 @@ export class MatchThree extends Component {
   @property(Node)
   fxTemp: Node | null = null;
 
+  @property(Node)
+  public logo: Node = null;
+
   /** Bàn khởi đầu cố định, mô phỏng theo ảnh ref (5 cột x 4 hàng). */
   private static readonly INITIAL_LAYOUT: number[][] = [
     [0, 1, 2, 1, 3],
@@ -402,6 +405,7 @@ export class MatchThree extends Component {
     this.hasTriggeredStore = true;
     if (this.storePanel) this.storePanel.active = true;
     Game.instance?.GameCallCTA();
+    if (this.logo) this.logo.active = false;
     if (Game.instance) Game.instance.CurrentGameState = GameState.Win;
   }
 
@@ -460,7 +464,7 @@ export class MatchThree extends Component {
   }
 
   private async resolveLoop() {
-    for (;;) {
+    for (; ;) {
       const matches = this.findMatches();
       if (matches.size === 0) break;
 
@@ -586,7 +590,7 @@ export class MatchThree extends Component {
         }),
       );
     });
-    return Promise.all(anims).then(() => {});
+    return Promise.all(anims).then(() => { });
   }
 
   /** Nổ FX tại vị trí gem vừa match được, dùng node mẫu fxTemp (clone rồi tự huỷ sau 1 khoảng ngắn). */
