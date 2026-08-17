@@ -15939,7 +15939,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 617,
+      "width": 620,
       "height": 200
     },
     "_anchorPoint": {
@@ -15970,7 +15970,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "4be3bfb4-6977-423f-8906-b8b0dbdaa59a@f9941",
+      "__uuid__": "36ae427f-a384-46b6-9669-7893146fa36a@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 1,
@@ -16382,7 +16382,7 @@
     "_enabled": true,
     "__prefab": null,
     "_clip": {
-      "__uuid__": "e52a7d76-e9af-41e1-973d-8b2157792a8f",
+      "__uuid__": "a4d38d75-ca97-478c-9684-f306d9aceae9",
       "__expectedType__": "cc.AudioClip"
     },
     "_loop": false,

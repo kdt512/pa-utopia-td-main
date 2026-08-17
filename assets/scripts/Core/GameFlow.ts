@@ -36,7 +36,7 @@ export class GameFlow {
         break;
       }
       default: {
-        console.log("init case Default"); 
+        console.log("init case Default");
         this.init();
         break;
       }
