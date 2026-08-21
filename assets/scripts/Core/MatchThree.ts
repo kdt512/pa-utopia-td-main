@@ -16,6 +16,7 @@ import {
   SpriteFrame,
   Sprite,
   ParticleSystem2D,
+  Animation,
 } from "cc";
 import { Player } from "../newGame/Player";
 import { Enemy } from "../newGame/Enemy";
@@ -807,6 +808,8 @@ export class MatchThree extends Component {
 
     await this.tweenPosition(node, posTo, 0.45);
     if (this.tutorialStopped) return;
+
+    this.tutorialHandNode.getComponent(Animation)?.play();
 
     await this.delay(0.9); // "tap" tại B
     if (this.tutorialStopped) return;
