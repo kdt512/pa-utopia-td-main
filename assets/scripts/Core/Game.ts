@@ -38,7 +38,7 @@ export class Game extends Component {
   public static instance: Game = null;
 
   protected onLoad(): void {
-    i18n.init("en");
+    i18n.init("tw");
     this.gameFlow = new GameFlow(this.audioPlayer, this.setup);
     Game.instance = this;
   }
