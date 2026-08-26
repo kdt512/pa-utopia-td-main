@@ -465,7 +465,7 @@ export class MatchThree extends Component {
   }
 
   private async resolveLoop() {
-    for (; ;) {
+    for (;;) {
       const matches = this.findMatches();
       if (matches.size === 0) break;
 
@@ -591,7 +591,7 @@ export class MatchThree extends Component {
         }),
       );
     });
-    return Promise.all(anims).then(() => { });
+    return Promise.all(anims).then(() => {});
   }
 
   /** Nổ FX tại vị trí gem vừa match được, dùng node mẫu fxTemp (clone rồi tự huỷ sau 1 khoảng ngắn). */
@@ -803,15 +803,15 @@ export class MatchThree extends Component {
     await this.tweenOpacity(opacity, 255, 0.2);
     if (this.tutorialStopped) return;
 
-    await this.delay(0.9); // để tay "tap" 1 nhịp tại A theo animation có sẵn của prefab
-    if (this.tutorialStopped) return;
-
-    await this.tweenPosition(node, posTo, 0.45);
+    await this.delay(0.2); // để tay "tap" 1 nhịp tại A theo animation có sẵn của prefab
     if (this.tutorialStopped) return;
 
     this.tutorialHandNode.getComponent(Animation)?.play();
 
     await this.delay(0.9); // "tap" tại B
+    if (this.tutorialStopped) return;
+
+    await this.tweenPosition(node, posTo, 0.45);
     if (this.tutorialStopped) return;
 
     await this.tweenOpacity(opacity, 0, 0.25);
