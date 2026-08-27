@@ -114,6 +114,8 @@ export class MatchThree extends Component {
 
   @property(Node)
   public logo: Node = null;
+  @property(Node)
+  public outMove: Node = null;
 
   /** Bàn khởi đầu cố định, mô phỏng theo ảnh ref (5 cột x 4 hàng). */
   private static readonly INITIAL_LAYOUT: number[][] = [
@@ -134,6 +136,11 @@ export class MatchThree extends Component {
   private hasTriggeredStore = false;
   private tutorialHandNode: Node | null = null;
   private tutorialStopped = false;
+  private tutorialPaused = false;
+
+  private readonly resumeTutorialHint = () => {
+    this.tutorialPaused = false;
+  };
 
   start() {
     this.buildGrid();
@@ -277,7 +284,7 @@ export class MatchThree extends Component {
   }
 
   private onTouchStart(event: EventTouch) {
-    this.stopTutorialHint();
+    // this.pauseTutorialHint();
 
     this.touchStartCell = null;
     this.touchStartPos = null;
@@ -292,6 +299,8 @@ export class MatchThree extends Component {
   }
 
   private onTouchEnd(event: EventTouch) {
+    this.pauseTutorialHint();
+
     const startCell = this.touchStartCell;
     const startPos = this.touchStartPos;
     this.touchStartCell = null;
@@ -371,7 +380,7 @@ export class MatchThree extends Component {
   private tweenTo(node: Node, pos: Vec3): Promise<void> {
     return new Promise((resolve) => {
       tween(node)
-        .to(0.18, { position: pos }, { easing: "quadOut" })
+        .to(0.35, { position: pos }, { easing: "quadOut" })
         .call(() => resolve())
         .start();
     });
@@ -478,20 +487,24 @@ export class MatchThree extends Component {
     await this.resetBoardIfNoMoves();
   }
 
-  /** Sau khi bàn ổn định, nếu không còn nước đi hợp lệ nào thì xáo lại toàn bộ bàn. */
+  /** Sau khi bàn ổn định, nếu không còn nước đi hợp lệ nào thì dừng 2s rồi cho thua game. */
   private async resetBoardIfNoMoves() {
     if (this.hasPossibleMove()) return;
+    if (this.hasTriggeredStore) return;
 
     this.isBusy = true;
-    await this.reshuffleBoard();
-    this.isBusy = false;
+    this.hasTriggeredStore = true;
+    Game.instance.CurrentGameState = GameState.None;
+    this.outMove.active = true;
+    await this.delay(2);
+    if (Game.instance) Game.instance.CurrentGameState = GameState.Lose;
   }
 
   private hasPossibleMove(): boolean {
     return this.findHintMove() !== null;
   }
 
-  /** Tìm 1 cặp ô liền kề mà nếu swap sẽ tạo match, dùng cho cả reshuffle-check lẫn icon tay tutorial. */
+  /** Tìm 1 cặp ô liền kề mà nếu swap sẽ tạo match, dùng cho cả kiểm tra hết nước đi lẫn icon tay tutorial. */
   private findHintMove(): { from: SelectedCell; to: SelectedCell } | null {
     for (let r = 0; r < this.rows; r++) {
       for (let c = 0; c < this.cols; c++) {
@@ -520,53 +533,6 @@ export class MatchThree extends Component {
     this.board[r2][c2] = tmp;
   }
 
-  private async reshuffleBoard() {
-    const clearAnims: Promise<void>[] = [];
-    for (let r = 0; r < this.rows; r++) {
-      for (let c = 0; c < this.cols; c++) {
-        const node = this.gemNodes[r][c];
-        if (!node) continue;
-        clearAnims.push(
-          new Promise((resolve) => {
-            tween(node)
-              .to(0.15, { scale: new Vec3(0, 0, 0) }, { easing: "backIn" })
-              .call(() => {
-                node.removeFromParent();
-                node.destroy();
-                resolve();
-              })
-              .start();
-          }),
-        );
-      }
-    }
-    await Promise.all(clearAnims);
-
-    let attempts = 0;
-    do {
-      this.board = [];
-      for (let r = 0; r < this.rows; r++) {
-        this.board[r] = [];
-        for (let c = 0; c < this.cols; c++) {
-          this.board[r][c] = this.randomColorAvoidingMatch(r, c);
-        }
-      }
-      attempts++;
-    } while (!this.hasPossibleMove() && attempts < 20);
-
-    const spawnAnims: Promise<void>[] = [];
-    this.gemNodes = [];
-    for (let r = 0; r < this.rows; r++) {
-      this.gemNodes[r] = [];
-      for (let c = 0; c < this.cols; c++) {
-        const node = this.createGemNode(r, c, this.board[r][c], true);
-        this.gemNodes[r][c] = node;
-        spawnAnims.push(this.tweenTo(node, this.cellPosition(r, c)));
-      }
-    }
-    await Promise.all(spawnAnims);
-  }
-
   private clearMatches(matches: Set<string>): Promise<void> {
     const anims: Promise<void>[] = [];
     matches.forEach((key) => {
@@ -581,7 +547,7 @@ export class MatchThree extends Component {
       anims.push(
         new Promise((resolve) => {
           tween(node)
-            .to(0.16, { scale: new Vec3(0, 0, 0) }, { easing: "backIn" })
+            .to(0.35, { scale: new Vec3(0, 0, 0) }, { easing: "backIn" })
             .call(() => {
               node.removeFromParent();
               node.destroy();
@@ -696,12 +662,27 @@ export class MatchThree extends Component {
     );
   }
 
+  /**
+   * Resolver của các tween tay tutorial đang chờ (tweenOpacity/tweenPosition). Khi
+   * hideTutorialHand/destroyTutorialHand gọi Tween.stopAllByTarget giữa chừng, tween bị dừng
+   * sẽ KHÔNG bao giờ gọi .call() -> promise treo vĩnh viễn -> playHandHint/vòng lặp tutorial bị
+   * đứng luôn. Nên phải chủ động resolve các promise này khi ngắt ngang.
+   */
+  private pendingHintResolvers: Array<() => void> = [];
+
+  private interruptPendingHints() {
+    const resolvers = this.pendingHintResolvers;
+    this.pendingHintResolvers = [];
+    resolvers.forEach((resolve) => resolve());
+  }
+
   private tweenOpacity(
     opacity: UIOpacity,
     target: number,
     duration: number,
   ): Promise<void> {
     return new Promise((resolve) => {
+      this.pendingHintResolvers.push(resolve);
       tween(opacity)
         .to(duration, { opacity: target })
         .call(() => resolve())
@@ -715,6 +696,7 @@ export class MatchThree extends Component {
     duration: number,
   ): Promise<void> {
     return new Promise((resolve) => {
+      this.pendingHintResolvers.push(resolve);
       tween(node)
         .to(duration, { position: pos }, { easing: "quadInOut" })
         .call(() => resolve())
@@ -722,13 +704,13 @@ export class MatchThree extends Component {
     });
   }
 
-  /** Vòng lặp icon tay: minh hoạ 1 nước đi hợp lệ, lặp lại tới khi user chạm lần đầu. */
+  /** Vòng lặp icon tay: minh hoạ 1 nước đi hợp lệ, tạm ẩn khi user tương tác rồi hiện lại nếu sau 3s vẫn im lặng. */
   private async startTutorialHint() {
     if (!this.tutorialEnabled) return;
 
     await this.delay(0.4);
     while (!this.tutorialStopped && this.node.isValid) {
-      if (this.isBusy) {
+      if (this.isBusy || this.tutorialPaused) {
         await this.delay(0.2);
         continue;
       }
@@ -747,13 +729,36 @@ export class MatchThree extends Component {
     this.destroyTutorialHand();
   }
 
+  /** User vừa tương tác: ẩn icon tay ngay (không huỷ node) và hoãn lại 3s im lặng trước khi hiện tut lại. */
+  private pauseTutorialHint() {
+    if (this.tutorialStopped) return;
+    this.tutorialPaused = true;
+    this.hideTutorialHand();
+    this.unschedule(this.resumeTutorialHint);
+    this.scheduleOnce(this.resumeTutorialHint, 3);
+  }
+
   private stopTutorialHint() {
     if (this.tutorialStopped) return;
     this.tutorialStopped = true;
+    this.unschedule(this.resumeTutorialHint);
     this.destroyTutorialHand();
   }
 
+  /** Dừng tween và ẩn icon tay, giữ nguyên node để tái sử dụng cho lần hiện tut kế tiếp. */
+  private hideTutorialHand() {
+    this.interruptPendingHints();
+    if (!this.tutorialHandNode) return;
+    Tween.stopAllByTarget(this.tutorialHandNode);
+    const opacity = this.tutorialHandNode.getComponent(UIOpacity);
+    if (opacity) Tween.stopAllByTarget(opacity);
+    this.tutorialHandNode.active = false;
+    this.tutorialText.active = false;
+  }
+
+  /** node tay là node thật trong scene (gán qua tutorialHandPrefab), không phải asset prefab nên chỉ được destroy 1 lần duy nhất khi dừng hẳn tutorial. */
   private destroyTutorialHand() {
+    this.interruptPendingHints();
     if (!this.tutorialHandNode) return;
     Tween.stopAllByTarget(this.tutorialHandNode);
     const opacity = this.tutorialHandNode.getComponent(UIOpacity);

@@ -21,6 +21,7 @@ export const languages = {
   try_again: "다시 시도",
   download_now: "지금 다운로드",
   title_game_desc: "방치형 타워 디펜스",
+  out_move: "더 이상 이동할 수 없습니다",
 };
 
 if (!win.languages) {

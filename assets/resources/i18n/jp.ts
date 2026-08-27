@@ -21,6 +21,7 @@ export const languages = {
   try_again: "もう一度挑戦",
   download_now: "今すぐダウンロード",
   title_game_desc: "アイドルタワーディフェンス",
+  out_move: "手番がなくなりました",
 };
 
 if (!win.languages) {
